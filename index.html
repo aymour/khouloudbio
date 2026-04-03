@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
+<meta name="theme-color" content="#1a4a1a">
+<title>Khouloud Bio — كنوز المغرب الطبيعية</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════
+   ROOT & RESET — Palette: Deep Green + Gold + Ivory
+═══════════════════════════════════════════════════ */
+:root{
+  --g1:#0d2b0d; --g2:#1a4a1a; --g3:#2d6b2d; --g4:#3d8a3d; --g5:#5aaa5a;
+  --gold:#c4922a; --gold2:#d4a830; --gold3:#f0c84a; --gold4:#fff0b0;
+  --ivory:#fdf8ee; --sand:#f5ead8; --cream:#fffdf8;
+  --red:#c1272d;
+  --dark:#0a1a0a; --brown:#3a2008; --muted:#4a5a3a;
+  --shadow:rgba(10,26,10,0.18);
+}
+[data-lang="ar"]{direction:rtl;}
+[data-lang="fr"],[data-lang="en"],[data-lang="es"]{direction:ltr;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:"Cairo",sans-serif;background:var(--g1);overflow-x:hidden;-webkit-text-size-adjust:100%;}
+
+/* ═══════════════════════════════════════════════════
+   FLAG BACKGROUND (fixed) — Official specs
+   Red #C1272D | Green #006233 | Ratio 2:3
+   Star: R=fly/6, centre=(450,300), tip-up
+   Path: P0(450,150)→P2(538.2,421.4)→P4(307.3,253.6)→P1(592.7,253.6)→P3(361.8,421.4)→close
+═══════════════════════════════════════════════════ */
+#flag-bg{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;}
+.page-overlay{position:fixed;inset:0;z-index:1;background:rgba(253,248,238,0.93);pointer-events:none;}
+nav,section,.trust-strip,footer,.lang-bar{position:relative;z-index:2;}
+
+/* ═══════════════════════════════════════════════════
+   LANGUAGE BAR
+═══════════════════════════════════════════════════ */
+.lang-bar{
+  background:linear-gradient(90deg,var(--g1),var(--g2),var(--g1));
+  padding:.3rem 5%;display:flex;align-items:center;gap:.35rem;
+  position:sticky;top:0;z-index:500;
+  border-bottom:1px solid rgba(196,146,42,.2);
+}
+.lang-lbl{font-size:.62rem;color:rgba(255,255,255,.38);letter-spacing:.12em;margin-inline-end:auto;}
+.lb{background:rgba(196,146,42,.12);border:1px solid rgba(196,146,42,.25);
+  color:rgba(255,255,255,.7);padding:.18rem .65rem;border-radius:20px;
+  font-family:"Cairo",sans-serif;font-size:.68rem;font-weight:700;cursor:pointer;transition:all .2s;}
+.lb:hover,.lb.active{background:var(--gold2);color:var(--dark);border-color:var(--gold2);}
+
+/* ═══════════════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════════════ */
+nav{
+  position:sticky;top:28px;z-index:400;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:0 5%;height:68px;
+  background:rgba(255,253,248,.97);backdrop-filter:blur(18px);
+  border-bottom:3px solid var(--gold);
+  box-shadow:0 2px 24px var(--shadow);
+}
+.logo{display:flex;align-items:center;gap:.55rem;text-decoration:none;flex-shrink:0;}
+.logo-icon{width:40px;height:40px;background:linear-gradient(135deg,var(--g1),var(--g3));
+  border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.15rem;
+  box-shadow:0 3px 10px rgba(45,107,45,.3);}
+.logo-text strong{display:block;font-size:1rem;font-weight:900;color:var(--brown);line-height:1.1;}
+.logo-text span{font-size:.58rem;color:var(--g3);letter-spacing:.14em;text-transform:uppercase;}
+nav ul{display:flex;gap:.2rem;list-style:none;align-items:center;}
+nav ul a{color:var(--brown);text-decoration:none;font-size:.82rem;font-weight:600;
+  opacity:.72;transition:all .2s;padding:.3rem .55rem;border-radius:6px;white-space:nowrap;}
+nav ul a:hover{opacity:1;color:var(--g3);background:rgba(45,107,45,.06);}
+.nav-cta{background:linear-gradient(135deg,var(--g2),var(--g3))!important;
+  color:white!important;padding:.44rem 1.1rem!important;border-radius:24px!important;
+  opacity:1!important;font-weight:700!important;box-shadow:0 3px 12px rgba(45,107,45,.25)!important;}
+.nav-cta:hover{background:var(--g4)!important;}
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:.4rem;color:var(--g2);}
+.nav-toggle svg{width:24px;height:24px;}
+.nav-mobile{display:none;position:fixed;top:calc(28px + 68px);left:0;right:0;
+  background:var(--cream);z-index:399;border-bottom:2px solid var(--gold);
+  padding:1rem 5%;flex-direction:column;gap:.3rem;box-shadow:0 8px 24px var(--shadow);}
+.nav-mobile.open{display:flex;}
+.nav-mobile a{color:var(--brown);text-decoration:none;font-size:.9rem;font-weight:600;
+  padding:.6rem 1rem;border-radius:8px;transition:all .2s;display:block;}
+.nav-mobile a:hover{background:rgba(45,107,45,.07);color:var(--g3);}
+.nav-mobile .nav-cta{background:linear-gradient(135deg,var(--g2),var(--g3))!important;color:white!important;
+  text-align:center;border-radius:24px!important;margin-top:.3rem;}
+
+/* ═══════════════════════════════════════════════════
+   LANDING PAGE HERO
+═══════════════════════════════════════════════════ */
+.landing{
+  min-height:100vh;
+  background:linear-gradient(160deg,var(--g1) 0%,var(--g2) 35%,#143014 60%,#0d200d 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:5rem 5% 4rem;position:relative;overflow:hidden;
+}
+/* Moroccan zellige pattern overlay */
+.landing::before{
+  content:"";position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cpath d='M40 0L80 40L40 80L0 40Z' fill='%23c4922a' fill-opacity='0.04'/%3E%3Cpath d='M40 10L70 40L40 70L10 40Z' stroke='%23c4922a' stroke-opacity='0.03' stroke-width='0.5' fill='none'/%3E%3C/g%3E%3C/svg%3E");
+  pointer-events:none;
+}
+/* Decorative gold ring */
+.landing-ring{
+  position:absolute;width:min(600px,90vw);height:min(600px,90vw);
+  border:1px solid rgba(196,146,42,.08);border-radius:50%;
+  top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;
+  animation:rotateSlow 60s linear infinite;
+}
+.landing-ring::before{content:"";position:absolute;inset:40px;border:1px solid rgba(196,146,42,.05);border-radius:50%;}
+@keyframes rotateSlow{to{transform:translate(-50%,-50%) rotate(360deg);}}
+
+/* Floating elements */
+.land-float{
+  position:absolute;font-size:1.5rem;opacity:.12;pointer-events:none;
+  animation:floatUp 8s ease-in-out infinite;
+}
+.land-float:nth-child(1){bottom:20%;left:8%;animation-delay:0s;}
+.land-float:nth-child(2){bottom:35%;right:8%;animation-delay:2s;font-size:2rem;}
+.land-float:nth-child(3){bottom:15%;left:25%;animation-delay:4s;font-size:1.2rem;}
+.land-float:nth-child(4){bottom:40%;right:20%;animation-delay:6s;font-size:1.8rem;}
+@keyframes floatUp{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-20px) rotate(5deg);}}
+
+/* Landing badge */
+.land-badge{
+  display:inline-flex;align-items:center;gap:.45rem;
+  background:rgba(196,146,42,.15);border:1px solid rgba(196,146,42,.35);
+  color:var(--gold3);padding:.38rem 1rem;border-radius:24px;
+  font-size:.7rem;font-weight:700;letter-spacing:.1em;margin-bottom:1.5rem;
+  animation:fadeUp .7s ease forwards;opacity:0;
+}
+
+/* Landing H1 */
+.land-h1{
+  font-family:"Cormorant Garamond",serif;
+  font-size:clamp(2.8rem,6.5vw,6.5rem);
+  font-weight:700;line-height:1.05;letter-spacing:-.02em;
+  color:#fff;margin-bottom:1.2rem;
+  animation:fadeUp .7s .1s ease forwards;opacity:0;
+}
+.land-h1 .gold{color:var(--gold3);}
+.land-h1 .light{color:rgba(255,255,255,.65);font-style:italic;font-size:.78em;}
+
+/* Landing sub */
+.land-sub{
+  font-size:clamp(.9rem,1.8vw,1.1rem);color:rgba(255,255,255,.62);
+  line-height:1.8;max-width:620px;margin:0 auto 2.5rem;
+  animation:fadeUp .7s .2s ease forwards;opacity:0;
+}
+
+/* Stats row */
+.land-stats{
+  display:flex;gap:2.5rem;justify-content:center;margin-bottom:3rem;flex-wrap:wrap;
+  animation:fadeUp .7s .3s ease forwards;opacity:0;
+}
+.stat-item{text-align:center;}
+.stat-num{font-family:"Cormorant Garamond",serif;font-size:2.4rem;font-weight:700;color:var(--gold3);line-height:1;}
+.stat-lbl{font-size:.68rem;color:rgba(255,255,255,.45);letter-spacing:.1em;margin-top:.2rem;}
+
+/* Landing CTAs */
+.land-actions{
+  display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;
+  animation:fadeUp .7s .38s ease forwards;opacity:0;
+}
+.btn-gold{
+  background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--dark);
+  padding:.82rem 2rem;border-radius:30px;font-family:"Cairo",sans-serif;
+  font-size:.9rem;font-weight:800;cursor:pointer;border:none;
+  text-decoration:none;display:inline-block;transition:all .25s;
+  box-shadow:0 4px 20px rgba(196,146,42,.35);white-space:nowrap;
+}
+.btn-gold:hover{background:linear-gradient(135deg,var(--gold2),var(--gold3));transform:translateY(-2px);box-shadow:0 8px 30px rgba(196,146,42,.45);}
+.btn-outline-gold{
+  border:2px solid rgba(196,146,42,.5);color:var(--gold3);
+  padding:.82rem 2rem;border-radius:30px;font-family:"Cairo",sans-serif;
+  font-size:.9rem;font-weight:700;cursor:pointer;background:transparent;
+  text-decoration:none;display:inline-block;transition:all .25s;white-space:nowrap;
+}
+.btn-outline-gold:hover{border-color:var(--gold3);background:rgba(196,146,42,.1);}
+.btn-green{
+  background:linear-gradient(135deg,var(--g2),var(--g3));color:white;
+  padding:.82rem 2rem;border-radius:30px;font-family:"Cairo",sans-serif;
+  font-size:.9rem;font-weight:700;cursor:pointer;border:none;
+  text-decoration:none;display:inline-block;transition:all .25s;white-space:nowrap;
+  box-shadow:0 4px 16px rgba(45,107,45,.3);
+}
+.btn-green:hover{background:linear-gradient(135deg,var(--g3),var(--g4));transform:translateY(-2px);}
+.btn-white{background:white;color:var(--g2);padding:.82rem 2rem;border-radius:30px;font-family:"Cairo",sans-serif;font-size:.9rem;font-weight:800;cursor:pointer;border:none;text-decoration:none;display:inline-block;transition:all .2s;}
+.btn-white:hover{transform:translateY(-2px);}
+.btn-outline-w{border:2px solid rgba(255,255,255,.4);color:white;padding:.82rem 2rem;border-radius:30px;font-family:"Cairo",sans-serif;font-size:.9rem;font-weight:700;cursor:pointer;background:transparent;text-decoration:none;display:inline-block;transition:all .2s;}
+.btn-outline-w:hover{border-color:white;background:rgba(255,255,255,.1);}
+
+/* Scroll down arrow */
+.scroll-hint{
+  position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
+  color:rgba(255,255,255,.3);font-size:.65rem;letter-spacing:.15em;
+  display:flex;flex-direction:column;align-items:center;gap:.4rem;
+  animation:bounceDown 2s ease-in-out infinite;
+}
+.scroll-hint::after{content:"⌄";font-size:1.4rem;}
+@keyframes bounceDown{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(6px);}}
+
+/* ═══════════════════════════════════════════════════
+   TRUST STRIP
+═══════════════════════════════════════════════════ */
+.trust-strip{
+  background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3),var(--g2),var(--g1));
+  border-top:2px solid rgba(196,146,42,.3);border-bottom:2px solid rgba(196,146,42,.3);
+  padding:.9rem 5%;display:flex;align-items:center;gap:2rem;overflow:hidden;
+}
+.trust-lbl{color:var(--gold3);font-size:.65rem;letter-spacing:.15em;white-space:nowrap;flex-shrink:0;opacity:.7;}
+.trust-items{display:flex;gap:2.5rem;animation:scrollItems 24s linear infinite;flex-shrink:0;}
+.trust-item{display:flex;align-items:center;gap:.4rem;color:rgba(255,255,255,.82);font-size:.8rem;font-weight:600;white-space:nowrap;}
+
+/* ═══════════════════════════════════════════════════
+   SECTION HELPERS
+═══════════════════════════════════════════════════ */
+.section-eyebrow{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;margin-bottom:.4rem;display:block;color:var(--gold);}
+.section-title{font-family:"Cormorant Garamond",serif;font-size:clamp(1.7rem,3vw,2.6rem);font-weight:700;letter-spacing:-.01em;line-height:1.2;color:var(--dark);}
+.section-title .gold{color:var(--gold);}
+.section-title .green{color:var(--g3);}
+
+/* ═══════════════════════════════════════════════════
+   PRODUCTS SECTION
+═══════════════════════════════════════════════════ */
+.products-section{padding:5.5rem 5%;background:var(--ivory);}
+.sec-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2.5rem;flex-wrap:wrap;gap:1rem;}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(270px,100%),1fr));gap:1.3rem;}
+.product-block{
+  background:white;border-radius:18px;overflow:hidden;
+  box-shadow:0 3px 18px var(--shadow);
+  transition:transform .3s,box-shadow .3s;
+  border:1px solid rgba(196,146,42,.1);cursor:pointer;
+}
+.product-block:hover{transform:translateY(-5px);box-shadow:0 14px 44px rgba(45,107,45,.14);}
+.product-image{height:155px;display:flex;align-items:center;justify-content:center;font-size:4.2rem;position:relative;overflow:hidden;}
+.product-image::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,transparent 60%,rgba(0,0,0,.05));}
+.prod-argan .product-image{background:linear-gradient(135deg,#f8ead0,#c8900a);}
+.prod-olive .product-image{background:linear-gradient(135deg,#c8f0a8,#3d8020);}
+.prod-honey .product-image{background:linear-gradient(135deg,#fff0a0,#e09000);}
+.prod-herbs .product-image{background:linear-gradient(135deg,#b8f0b8,#2a7a2a);}
+.prod-dates .product-image{background:linear-gradient(135deg,#ffd090,#7a3800);}
+.prod-rose  .product-image{background:linear-gradient(135deg,#f8c8d8,#c04878);}
+.prod-amlou .product-image{background:linear-gradient(135deg,#f0dca0,#b87000);}
+.prod-safran .product-image{background:linear-gradient(135deg,#fff4b0,#d88000);}
+.product-body{padding:1.1rem 1.2rem;}
+.product-tag{display:inline-block;background:rgba(196,146,42,.1);color:var(--gold);font-size:.6rem;font-weight:700;letter-spacing:.1em;padding:.2rem .6rem;border-radius:16px;margin-bottom:.45rem;border:1px solid rgba(196,146,42,.2);}
+.product-name{font-size:.98rem;font-weight:800;color:var(--dark);margin-bottom:.35rem;}
+.product-desc{font-size:.76rem;color:var(--muted);line-height:1.55;}
+
+/* Dual currency price display */
+.product-price{padding:.5rem 1.2rem 0;display:flex;align-items:baseline;gap:.3rem;flex-wrap:wrap;}
+.price-main{font-size:1.1rem;font-weight:900;color:var(--g3);}
+.price-unit{font-size:.62rem;color:var(--muted);line-height:1.6;}
+
+.price-main{font-size:1.2rem;font-weight:900;color:var(--g3);}
+.price-unit{font-size:.65rem;color:var(--muted);}
+.product-footer{padding:.75rem 1.2rem;border-top:1px solid rgba(196,146,42,.08);display:flex;justify-content:space-between;align-items:center;}
+.product-origin{font-size:.65rem;color:var(--muted);}
+.product-cta{background:linear-gradient(135deg,var(--g2),var(--g3));color:white;border:none;padding:.38rem .9rem;border-radius:16px;font-family:"Cairo",sans-serif;font-size:.7rem;font-weight:700;cursor:pointer;transition:all .2s;white-space:nowrap;}
+.product-cta:hover{background:var(--g4);transform:scale(1.03);}
+
+/* ═══════════════════════════════════════════════════
+   INTERACTIVE ILLUSTRATED MAP OF MOROCCO
+   Shows products by region — SVG
+═══════════════════════════════════════════════════ */
+.map-section{
+  padding:5.5rem 5%;
+  background:linear-gradient(160deg,var(--g1) 0%,#0e220e 50%,var(--g2) 100%);
+  position:relative;overflow:hidden;
+}
+.map-section::before{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c4922a' fill-opacity='0.025'%3E%3Cpath d='M40 0L80 40L40 80L0 40Z'/%3E%3C/g%3E%3C/svg%3E");pointer-events:none;}
+.map-section-inner{position:relative;z-index:2;}
+.map-header{text-align:center;margin-bottom:3rem;}
+.map-header .section-eyebrow{color:var(--gold2);}
+.map-header .section-title{color:white;}
+.map-header p{color:rgba(255,255,255,.5);font-size:.88rem;margin-top:.6rem;}
+
+/* Map container */
+.map-container{
+  display:grid;grid-template-columns:1fr 380px;gap:3rem;align-items:start;
+  position:relative;
+}
+/* Right: region info panel */
+.region-panel{
+  background:rgba(255,255,255,.04);border:1px solid rgba(196,146,42,.18);
+  border-radius:18px;padding:1.5rem;position:sticky;top:120px;
+}
+.region-panel-default{display:block;}
+.region-info-box{display:none;}
+.region-info-box.active{display:block;}
+.rp-icon{font-size:2.8rem;margin-bottom:.7rem;display:block;}
+.rp-name{font-family:"Cormorant Garamond",serif;font-size:1.5rem;font-weight:700;color:var(--gold3);margin-bottom:.3rem;}
+.rp-sub{font-size:.72rem;color:rgba(255,255,255,.4);letter-spacing:.12em;margin-bottom:1rem;}
+.rp-desc{font-size:.8rem;color:rgba(255,255,255,.58);line-height:1.7;margin-bottom:1.2rem;}
+.rp-products{display:flex;flex-wrap:wrap;gap:.5rem;}
+.rp-product{
+  background:rgba(196,146,42,.12);border:1px solid rgba(196,146,42,.25);
+  color:var(--gold3);padding:.3rem .7rem;border-radius:14px;
+  font-size:.68rem;font-weight:700;display:flex;align-items:center;gap:.3rem;
+}
+.rp-default-title{font-family:"Cormorant Garamond",serif;font-size:1.2rem;color:var(--gold3);margin-bottom:.8rem;}
+.rp-default-hint{font-size:.76rem;color:rgba(255,255,255,.4);line-height:1.6;}
+.region-list{margin-top:1.2rem;display:flex;flex-direction:column;gap:.4rem;}
+.region-list-item{display:flex;align-items:center;gap:.6rem;padding:.45rem .6rem;border-radius:8px;cursor:pointer;transition:all .2s;border:1px solid transparent;}
+.region-list-item:hover{background:rgba(196,146,42,.08);border-color:rgba(196,146,42,.15);}
+.region-list-item.active{background:rgba(196,146,42,.12);border-color:rgba(196,146,42,.25);}
+.rli-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.rli-name{font-size:.75rem;font-weight:600;color:rgba(255,255,255,.75);}
+.rli-prod{font-size:.63rem;color:rgba(255,255,255,.38);margin-top:.1rem;}
+
+/* The SVG map */
+.map-svg-wrap{background:rgba(255,255,255,.02);border:1px solid rgba(196,146,42,.1);border-radius:16px;padding:1.2rem;overflow:hidden;}
+.morocco-map{width:100%;height:auto;display:block;cursor:default;}
+/* Region paths — hover + selected states */
+.region-path{
+  fill:var(--g3);stroke:rgba(196,146,42,.4);stroke-width:1.5;
+  transition:fill .25s,filter .25s;cursor:pointer;
+}
+.region-path:hover{fill:var(--g4);filter:drop-shadow(0 2px 8px rgba(196,146,42,.3));}
+.region-path.selected{fill:var(--gold);filter:drop-shadow(0 2px 12px rgba(196,146,42,.5));}
+/* Western Sahara */
+.sahara-path{fill:var(--gold);stroke:rgba(255,255,255,.25);stroke-width:1.2;opacity:.75;cursor:pointer;transition:all .25s;}
+.sahara-path:hover{opacity:.95;filter:drop-shadow(0 2px 8px rgba(196,146,42,.4));}
+.sahara-path.selected{opacity:1;filter:drop-shadow(0 2px 12px rgba(196,146,42,.5));}
+/* Product icons on map */
+.map-prod-icon{font-size:13px;pointer-events:none;user-select:none;}
+/* Region label */
+.region-label{font-family:"Cairo",sans-serif;font-size:7px;fill:rgba(255,255,255,.8);pointer-events:none;user-select:none;font-weight:700;}
+/* City dots */
+.city-dot{fill:white;stroke:var(--gold2);stroke-width:1.5;}
+.city-label{font-family:"Cairo",sans-serif;font-size:6.5px;fill:rgba(255,255,255,.75);pointer-events:none;user-select:none;}
+.capital-dot{fill:var(--gold3);stroke:white;stroke-width:2;}
+
+/* ═══════════════════════════════════════════════════
+   WHY SECTION
+═══════════════════════════════════════════════════ */
+.why-section{padding:5.5rem 5%;background:var(--sand);}
+.why-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.why-visual-box{
+  background:linear-gradient(135deg,var(--g1),var(--g2),var(--g3));
+  border-radius:22px;height:360px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;gap:.6rem;
+  box-shadow:0 20px 60px rgba(10,26,10,.25);
+}
+.why-visual-box::before{content:"";position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c4922a' fill-opacity='0.06'%3E%3Cpath d='M30 0L60 30 30 60 0 30z'/%3E%3C/g%3E%3C/svg%3E");}
+.why-visual-box .big{font-size:4.5rem;position:relative;z-index:1;}
+.why-visual-box p{color:rgba(255,255,255,.6);font-size:.85rem;font-weight:600;position:relative;z-index:1;}
+.why-points{display:flex;flex-direction:column;gap:1.1rem;margin-top:1.4rem;}
+.why-point{display:flex;gap:.8rem;align-items:flex-start;}
+.why-icon{width:42px;height:42px;flex-shrink:0;background:rgba(45,107,45,.1);border:1px solid rgba(45,107,45,.18);
+  border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.05rem;}
+.why-text strong{display:block;color:var(--dark);font-size:.88rem;font-weight:700;margin-bottom:.18rem;}
+.why-text p{color:var(--muted);font-size:.76rem;line-height:1.55;margin:0;}
+
+/* ═══════════════════════════════════════════════════
+   HADITH SECTION
+═══════════════════════════════════════════════════ */
+.hadith-section{
+  padding:5.5rem 5%;
+  background:linear-gradient(160deg,#082008,#0f2a0c,#0d220a);
+  position:relative;overflow:hidden;text-align:center;
+}
+.hadith-section::before{content:"";position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c4922a' fill-opacity='0.02'%3E%3Cpath d='M40 0 L80 40 L40 80 L0 40 Z'/%3E%3C/g%3E%3C/svg%3E");pointer-events:none;}
+.hadith-hdr{position:relative;margin-bottom:3rem;}
+.hadith-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr));gap:1.2rem;margin-bottom:2.5rem;}
+.hadith-card{background:rgba(255,255,255,.03);border:1px solid rgba(196,146,42,.18);
+  border-radius:16px;padding:1.8rem 1.5rem;text-align:right;transition:transform .3s;position:relative;}
+.hadith-card::before{content:"";position:absolute;top:0;right:0;left:0;height:2px;
+  background:linear-gradient(to right,transparent,rgba(196,146,42,.5),transparent);}
+.hadith-card:hover{transform:translateY(-3px);background:rgba(255,255,255,.06);}
+[data-lang="fr"] .hadith-card,[data-lang="en"] .hadith-card,[data-lang="es"] .hadith-card{text-align:left;}
+.hadith-icon{font-size:2rem;margin-bottom:.9rem;display:block;text-align:center;}
+.hadith-txt{font-size:.98rem;line-height:1.85;color:#e8d8a0;font-weight:600;
+  border-right:3px solid rgba(196,146,42,.4);padding-right:.8rem;margin-bottom:.9rem;letter-spacing:.02em;}
+[data-lang="fr"] .hadith-txt,[data-lang="en"] .hadith-txt,[data-lang="es"] .hadith-txt{border-right:none;border-left:3px solid rgba(196,146,42,.4);padding-right:0;padding-left:.8rem;}
+.hadith-src{font-size:.68rem;color:rgba(255,255,255,.36);}
+.hadith-src span{color:#8acc70;font-weight:700;}
+.ayah-box{background:rgba(196,146,42,.06);border:1px solid rgba(196,146,42,.2);
+  border-radius:16px;padding:2rem 2.5rem;text-align:right;position:relative;max-width:860px;margin:0 auto;}
+.ayah-box::before{content:"";position:absolute;top:0;right:0;left:0;height:3px;border-radius:16px 16px 0 0;
+  background:linear-gradient(to left,transparent,rgba(196,146,42,.6),transparent);}
+[data-lang="fr"] .ayah-box,[data-lang="en"] .ayah-box,[data-lang="es"] .ayah-box{text-align:left;}
+.ayah-hdr{display:flex;align-items:center;gap:.8rem;margin-bottom:1.4rem;padding-bottom:1rem;
+  border-bottom:1px solid rgba(196,146,42,.12);}
+.ayah-hdr-icon{font-size:2rem;flex-shrink:0;}
+.ayah-hdr-ttl{font-size:.9rem;font-weight:800;color:#e8d8a0;}
+.ayah-hdr-sub{font-size:.65rem;color:rgba(255,255,255,.3);margin-top:.12rem;letter-spacing:.1em;}
+.ayah-txt{font-size:1rem;line-height:2.1;color:#f0e4b0;font-weight:600;letter-spacing:.03em;}
+.ayah-ref{font-size:.68rem;color:rgba(255,255,255,.28);margin-top:1rem;text-align:center;letter-spacing:.08em;}
+
+/* ═══════════════════════════════════════════════════
+   CTA SECTION
+═══════════════════════════════════════════════════ */
+.cta-section{
+  padding:6rem 5%;
+  background:linear-gradient(135deg,var(--g1),var(--g2),var(--g3));
+  text-align:center;position:relative;overflow:hidden;
+}
+.cta-section::before{content:"";position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c4922a' fill-opacity='0.05'%3E%3Cpath d='M30 0L60 30 30 60 0 30z'/%3E%3C/g%3E%3C/svg%3E");}
+.cta-section h2{font-family:"Cormorant Garamond",serif;font-size:clamp(1.8rem,3.5vw,3rem);font-weight:700;color:white;margin-bottom:.8rem;position:relative;}
+.cta-section p{color:rgba(255,255,255,.72);font-size:1rem;margin-bottom:2rem;position:relative;}
+.cta-btns{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;position:relative;}
+
+/* ═══════════════════════════════════════════════════
+   FOOTER — Official flag + map
+═══════════════════════════════════════════════════ */
+footer{background:#040a04;border-top:4px solid var(--gold);}
+.footer-panels{display:grid;grid-template-columns:1fr 1fr;}
+.footer-flag-panel,.footer-map-panel{
+  display:flex;flex-direction:column;align-items:center;
+  justify-content:center;padding:2.5rem 2rem;gap:1.2rem;
+}
+.footer-flag-panel{background:linear-gradient(135deg,#060806,#0a120a);border-inline-end:1px solid rgba(196,146,42,.12);}
+.footer-map-panel{background:linear-gradient(135deg,#040604,#080c08);}
+.footer-panel-ttl{font-size:.63rem;color:rgba(255,255,255,.28);letter-spacing:.18em;text-transform:uppercase;font-weight:600;text-align:center;}
+
+/* Flag display */
+.flag-display{width:100%;max-width:340px;}
+.flag-with-pole{display:flex;align-items:flex-start;}
+.fpole{width:6px;min-height:180px;
+  background:linear-gradient(180deg,var(--gold3),#9a7010,var(--gold2),#9a7010,var(--gold3));
+  border-radius:3px;flex-shrink:0;box-shadow:2px 0 8px rgba(0,0,0,.5);position:relative;}
+.fpole::before{content:"★";position:absolute;top:-18px;left:50%;transform:translateX(-50%);color:var(--gold2);font-size:.9rem;}
+.fcanvas{flex:1;aspect-ratio:3/2;overflow:hidden;border-radius:0 3px 3px 0;
+  box-shadow:6px 3px 28px rgba(0,0,0,.65);
+  animation:flagWave 7s ease-in-out infinite;transform-origin:left center;}
+@keyframes flagWave{0%,100%{transform:skewY(0) scaleX(1);}35%{transform:skewY(.35deg) scaleX(.993);}70%{transform:skewY(-.28deg) scaleX(1.004);}}
+.flag-spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:.45rem;width:100%;max-width:340px;}
+.flag-spec{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:7px;padding:.45rem .65rem;}
+.fsl{font-size:.57rem;color:rgba(255,255,255,.28);letter-spacing:.1em;margin-bottom:.18rem;}
+.fsv{font-size:.68rem;color:rgba(255,255,255,.58);font-weight:700;display:flex;align-items:center;gap:.3rem;}
+.sw{width:12px;height:12px;border-radius:2px;flex-shrink:0;display:inline-block;}
+
+/* Uploaded map */
+.footer-map-img{width:100%;max-width:290px;}
+.footer-map-img img{width:100%;height:auto;display:block;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,.55);}
+.footer-map-cap{text-align:center;margin-top:.55rem;}
+.footer-map-cap strong{display:block;color:rgba(255,255,255,.62);font-size:.76rem;font-weight:700;}
+.footer-map-cap small{display:block;color:rgba(255,255,255,.26);font-size:.58rem;letter-spacing:.1em;margin-top:.12rem;}
+
+.footer-bottom{
+  background:#020402;padding:1.1rem 5%;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.8rem;
+  border-top:1px solid rgba(255,255,255,.04);
+}
+.footer-logo{color:var(--gold2);font-size:1rem;font-weight:900;}
+.footer-logo small{display:block;font-size:.58rem;color:rgba(255,255,255,.24);letter-spacing:.1em;margin-top:.1rem;}
+.footer-links{display:flex;gap:1.4rem;list-style:none;flex-wrap:wrap;}
+.footer-links a{color:rgba(255,255,255,.32);text-decoration:none;font-size:.76rem;transition:color .2s;}
+.footer-links a:hover{color:var(--gold2);}
+.footer-copy{font-size:.66rem;color:rgba(255,255,255,.18);}
+
+/* ═══════════════════════════════════════════════════
+   ANIMATIONS & REVEAL
+═══════════════════════════════════════════════════ */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes scrollItems{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* ═══════════════════════════════════════════════════
+   TRANSLATION HELPERS
+═══════════════════════════════════════════════════ */
+.t-ar,.t-fr,.t-en,.t-es,
+.ti-ar,.ti-fr,.ti-en,.ti-es,
+.tf-ar,.tf-fr,.tf-en,.tf-es{display:none;}
+[data-lang="ar"] .t-ar{display:block;}[data-lang="fr"] .t-fr{display:block;}
+[data-lang="en"] .t-en{display:block;}[data-lang="es"] .t-es{display:block;}
+[data-lang="ar"] .ti-ar{display:inline;}[data-lang="fr"] .ti-fr{display:inline;}
+[data-lang="en"] .ti-en{display:inline;}[data-lang="es"] .ti-es{display:inline;}
+
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════ */
+@media(max-width:1100px){
+  .map-container{grid-template-columns:1fr;gap:2rem;}
+  .region-panel{position:static;}
+}
+@media(max-width:1024px){
+  .why-inner{grid-template-columns:1fr;}
+  .why-visual-box{height:200px;}
+  .footer-panels{grid-template-columns:1fr;}
+}
+@media(max-width:768px){
+  nav{top:24px;padding:0 4%;}
+  nav ul{display:none;}
+  .nav-toggle{display:flex;align-items:center;justify-content:center;}
+  .lang-bar{padding:.28rem 4%;}
+  .lb{padding:.15rem .5rem;font-size:.65rem;}
+  .landing{padding:3.5rem 4% 3rem;}
+  .land-h1{font-size:clamp(2.2rem,9vw,3.5rem);}
+  .land-stats{gap:1.5rem;}
+  .stat-num{font-size:1.8rem;}
+  .land-actions{flex-direction:column;align-items:center;}
+  .products-section,.map-section,.why-section,.hadith-section,.cta-section{padding:3.5rem 4%;}
+  .products-grid{grid-template-columns:repeat(auto-fill,minmax(min(230px,100%),1fr));gap:1rem;}
+  .hadith-grid{grid-template-columns:1fr;}
+  .ayah-box{padding:1.5rem 1.2rem;}
+  .footer-panels{grid-template-columns:1fr;}
+  .footer-bottom{flex-direction:column;align-items:center;text-align:center;padding:1rem 4%;}
+  .footer-links{justify-content:center;}
+}
+@media(max-width:480px){
+  .land-h1{font-size:clamp(1.9rem,10vw,2.8rem);}
+  .land-stats{gap:1rem;}
+  .stat-num{font-size:1.5rem;}
+  .why-visual-box{height:150px;font-size:3rem;}
+  .flag-display{max-width:100%;}
+  .footer-map-img{max-width:100%;}
+  .map-container{gap:1.5rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- FLAG BG -->
+<svg id="flag-bg" viewBox="0 0 900 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="600" fill="#C1272D"/>
+  <path d="M 450,150 L 538.211,421.353 L 307.295,253.647 L 592.705,253.647 L 361.789,421.353 Z"
+    fill="none" stroke="#006233" stroke-width="45" stroke-linejoin="miter" stroke-miterlimit="8"/>
+</svg>
+<div class="page-overlay"></div>
+
+<!-- LANGUAGE BAR -->
+<div class="lang-bar">
+  <span class="lang-lbl"><span class="ti-ar">اختر اللغة</span><span class="ti-fr">Langue</span><span class="ti-en">Language</span><span class="ti-es">Idioma</span></span>
+  <button class="lb" data-l="ar">العربية</button>
+  <button class="lb" data-l="fr">Français</button>
+  <button class="lb" data-l="en">English</button>
+  <button class="lb" data-l="es">Español</button>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-icon">🌿</div>
+    <div class="logo-text">
+      <strong>Khouloud Bio</strong>
+      <span><span class="ti-ar">المغرب الطبيعي</span><span class="ti-fr">Maroc Naturel</span><span class="ti-en">Natural Morocco</span><span class="ti-es">Marruecos Natural</span></span>
+    </div>
+  </a>
+  <ul>
+    <li><a href="#products"><span class="ti-ar">منتجاتنا</span><span class="ti-fr">Produits</span><span class="ti-en">Products</span><span class="ti-es">Productos</span></a></li>
+    <li><a href="#map-section"><span class="ti-ar">الخريطة</span><span class="ti-fr">Carte</span><span class="ti-en">Map</span><span class="ti-es">Mapa</span></a></li>
+    <li><a href="#why"><span class="ti-ar">لماذا نحن</span><span class="ti-fr">Pourquoi nous</span><span class="ti-en">Why us</span><span class="ti-es">Por qué</span></a></li>
+    <li><a href="https://wa.me/212638733257" target="_blank" class="nav-cta">
+      <span class="ti-ar">اطلب الآن</span><span class="ti-fr">Commander</span><span class="ti-en">Order now</span><span class="ti-es">Pedir ahora</span>
+    </a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="#products" onclick="closeNav()"><span class="ti-ar">منتجاتنا</span><span class="ti-fr">Produits</span><span class="ti-en">Products</span><span class="ti-es">Productos</span></a>
+  <a href="#map-section" onclick="closeNav()"><span class="ti-ar">خريطة المغرب</span><span class="ti-fr">Carte du Maroc</span><span class="ti-en">Morocco Map</span><span class="ti-es">Mapa de Marruecos</span></a>
+  <a href="#why" onclick="closeNav()"><span class="ti-ar">لماذا نحن</span><span class="ti-fr">Pourquoi nous</span><span class="ti-en">Why us</span><span class="ti-es">Por qué nosotros</span></a>
+  <a href="https://wa.me/212638733257" target="_blank" class="nav-cta" onclick="closeNav()">💬 WhatsApp</a>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     LANDING PAGE
+══════════════════════════════════════════════ -->
+<section class="landing" id="landing">
+  <div class="land-float">🌿</div>
+  <div class="land-float">🫙</div>
+  <div class="land-float">🍯</div>
+  <div class="land-float">🌹</div>
+  <div class="landing-ring"></div>
+
+  <div class="land-badge">
+    🇲🇦 <span class="ti-ar">منتجات طبيعية أصيلة من المغرب</span>
+        <span class="ti-fr">Produits naturels authentiques du Maroc</span>
+        <span class="ti-en">Authentic natural products from Morocco</span>
+        <span class="ti-es">Productos naturales auténticos de Marruecos</span>
+  </div>
+
+  <h1 class="land-h1">
+    <span class="t-ar"><span class="gold">كنوز</span> المغرب<br><span class="light">في يدَيك</span></span>
+    <span class="t-fr">Les <span class="gold">Trésors</span><br>du Maroc <span class="light">chez vous</span></span>
+    <span class="t-en">Morocco's <span class="gold">Treasures</span><br><span class="light">Delivered to You</span></span>
+    <span class="t-es">Los <span class="gold">Tesoros</span><br>de Marruecos <span class="light">en Casa</span></span>
+  </h1>
+
+  <p class="land-sub">
+    <span class="t-ar">من سفوح الأطلس الشامخة إلى واحات الصحراء الذهبية — زيت الأركان، العسل، الزعفران، والتمور المغربية الأصيلة. طبيعية 100% ومباشرة من المصدر.</span>
+    <span class="t-fr">Des versants majestueux de l'Atlas aux oasis dorées du Sahara — huile d'argan, miel, safran et dattes marocaines. 100% naturels, directement à la source.</span>
+    <span class="t-en">From the majestic Atlas slopes to the golden Saharan oases — argan oil, honey, saffron and Moroccan dates. 100% natural, direct from source.</span>
+    <span class="t-es">Desde las majestuosas laderas del Atlas hasta los oasis dorados del Sahara — aceite de argán, miel, azafrán y dátiles marroquíes. 100% naturales, directo del origen.</span>
+  </p>
+
+  <div class="land-stats">
+    <div class="stat-item"><div class="stat-num">8+</div><div class="stat-lbl"><span class="ti-ar">منتج طبيعي</span><span class="ti-fr">Produits naturels</span><span class="ti-en">Natural products</span><span class="ti-es">Productos naturales</span></div></div>
+    <div class="stat-item"><div class="stat-num">12</div><div class="stat-lbl"><span class="ti-ar">جهة مغربية</span><span class="ti-fr">Régions marocaines</span><span class="ti-en">Moroccan regions</span><span class="ti-es">Regiones marroquíes</span></div></div>
+    <div class="stat-item"><div class="stat-num">100%</div><div class="stat-lbl"><span class="ti-ar">عضوي نقي</span><span class="ti-fr">Bio & Pur</span><span class="ti-en">Organic & Pure</span><span class="ti-es">Bio y Puro</span></div></div>
+    <div class="stat-item"><div class="stat-num">🌍</div><div class="stat-lbl"><span class="ti-ar">توصيل دولي</span><span class="ti-fr">Livraison mondiale</span><span class="ti-en">Worldwide delivery</span><span class="ti-es">Envío mundial</span></div></div>
+  </div>
+
+  <div class="land-actions">
+    <a href="#products" class="btn-gold">
+      <span class="ti-ar">🌿 اكتشف المنتجات</span>
+      <span class="ti-fr">🌿 Découvrir les produits</span>
+      <span class="ti-en">🌿 Discover Products</span>
+      <span class="ti-es">🌿 Descubrir productos</span>
+    </a>
+    <a href="#map-section" class="btn-outline-gold">
+      <span class="ti-ar">🗺️ خريطة المغرب</span>
+      <span class="ti-fr">🗺️ Carte du Maroc</span>
+      <span class="ti-en">🗺️ Morocco Map</span>
+      <span class="ti-es">🗺️ Mapa de Marruecos</span>
+    </a>
+    <a href="https://wa.me/212638733257" target="_blank" class="btn-outline-gold">
+      💬 WhatsApp
+    </a>
+  </div>
+
+  <div class="scroll-hint">
+    <span class="ti-ar">اكتشف المزيد</span>
+    <span class="ti-fr">Découvrir</span>
+    <span class="ti-en">Discover</span>
+    <span class="ti-es">Descubrir</span>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <span class="trust-lbl"><span class="ti-ar">✦ جودة:</span><span class="ti-fr">✦ Qualité:</span><span class="ti-en">✦ Quality:</span><span class="ti-es">✦ Calidad:</span></span>
+  <div class="trust-items">
+    <div class="trust-item">🌿 <span class="ti-ar">عضوي معتمد</span><span class="ti-fr">Bio certifié</span><span class="ti-en">Certified Organic</span><span class="ti-es">Bio certificado</span></div>
+    <div class="trust-item">🇲🇦 <span class="ti-ar">صنع في المغرب</span><span class="ti-fr">Fait au Maroc</span><span class="ti-en">Made in Morocco</span><span class="ti-es">Hecho en Marruecos</span></div>
+    <div class="trust-item">✅ <span class="ti-ar">بدون مواد حافظة</span><span class="ti-fr">Sans conservateurs</span><span class="ti-en">No preservatives</span><span class="ti-es">Sin conservantes</span></div>
+    <div class="trust-item">🚚 <span class="ti-ar">شحن دولي</span><span class="ti-fr">Expédition internationale</span><span class="ti-en">International shipping</span><span class="ti-es">Envío internacional</span></div>
+    <div class="trust-item">⭐ <span class="ti-ar">ضمان الجودة</span><span class="ti-fr">Garantie qualité</span><span class="ti-en">Quality guarantee</span><span class="ti-es">Garantía calidad</span></div>
+    <div class="trust-item">🌿 <span class="ti-ar">عضوي معتمد</span><span class="ti-fr">Bio certifié</span><span class="ti-en">Certified Organic</span><span class="ti-es">Bio certificado</span></div>
+    <div class="trust-item">🇲🇦 <span class="ti-ar">صنع في المغرب</span><span class="ti-fr">Fait au Maroc</span><span class="ti-en">Made in Morocco</span><span class="ti-es">Hecho en Marruecos</span></div>
+    <div class="trust-item">✅ <span class="ti-ar">بدون مواد حافظة</span><span class="ti-fr">Sans conservateurs</span><span class="ti-en">No preservatives</span><span class="ti-es">Sin conservantes</span></div>
+    <div class="trust-item">🚚 <span class="ti-ar">شحن دولي</span><span class="ti-fr">Expédition internationale</span><span class="ti-en">International shipping</span><span class="ti-es">Envío internacional</span></div>
+    <div class="trust-item">⭐ <span class="ti-ar">ضمان الجودة</span><span class="ti-fr">Garantie qualité</span><span class="ti-en">Quality guarantee</span><span class="ti-es">Garantía calidad</span></div>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section class="products-section reveal" id="products">
+  <div class="sec-header">
+    <div>
+      <span class="section-eyebrow"><span class="ti-ar">منتجاتنا الطبيعية</span><span class="ti-fr">Nos produits naturels</span><span class="ti-en">Our natural products</span><span class="ti-es">Nuestros productos naturales</span></span>
+      <h2 class="section-title"><span class="t-ar">خيرات <span class="green">الأرض</span> <span class="gold">المغربية</span></span><span class="t-fr">Les richesses de la <span class="green">terre</span> <span class="gold">marocaine</span></span><span class="t-en">Riches of <span class="green">Moroccan</span> <span class="gold">Land</span></span><span class="t-es">Riquezas de la <span class="green">tierra</span> <span class="gold">marroquí</span></span></h2>
+    </div>
+  </div>
+  <div class="products-grid">
+    <div class="product-block prod-argan"><div class="product-image" style="padding:0;overflow:hidden;background:none;"><svg viewBox="0 0 200 170" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%"><defs><linearGradient id="bg-a" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#2a1504"/><stop offset="100%" stop-color="#3d2008"/></linearGradient><linearGradient id="bottle-a" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#d4900a"/><stop offset="40%" stop-color="#e8a820"/><stop offset="100%" stop-color="#b87010"/></linearGradient><linearGradient id="oil-a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f0c040"/><stop offset="100%" stop-color="#c88010"/></linearGradient><linearGradient id="lbl-a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fff8e8"/><stop offset="100%" stop-color="#f5ead0"/></linearGradient></defs><rect width="200" height="170" fill="url(#bg-a)"/><ellipse cx="100" cy="85" rx="70" ry="60" fill="#5a2a08" opacity="0.4"/><ellipse cx="38" cy="118" rx="12" ry="9" fill="#7a4010" transform="rotate(-20,38,118)"/><ellipse cx="38" cy="118" rx="8" ry="6" fill="#a05818" transform="rotate(-20,38,118)"/><ellipse cx="162" cy="112" rx="11" ry="8" fill="#7a4010" transform="rotate(15,162,112)"/><ellipse cx="162" cy="112" rx="7" ry="5" fill="#a05818" transform="rotate(15,162,112)"/><ellipse cx="48" cy="88" rx="9" ry="7" fill="#6a3808" transform="rotate(30,48,88)"/><ellipse cx="152" cy="82" rx="10" ry="7" fill="#7a4010" transform="rotate(-10,152,82)"/><ellipse cx="42" cy="60" rx="18" ry="8" fill="#2a6010" transform="rotate(-35,42,60)"/><line x1="42" y1="52" x2="42" y2="68" stroke="#1a4008" stroke-width="1.5" transform="rotate(-35,42,60)"/><ellipse cx="158" cy="65" rx="16" ry="7" fill="#2a6010" transform="rotate(30,158,65)"/><line x1="158" y1="58" x2="158" y2="72" stroke="#1a4008" stroke-width="1.5" transform="rotate(30,158,65)"/><ellipse cx="100" cy="152" rx="32" ry="8" fill="#1a0800" opacity="0.6"/><rect x="73" y="68" width="54" height="82" rx="10" fill="url(#bottle-a)"/><rect x="76" y="98" width="48" height="50" rx="7" fill="url(#oil-a)"/><ellipse cx="100" cy="98" rx="24" ry="4" fill="#f8e060" opacity="0.7"/><rect x="86" y="38" width="28" height="32" rx="4" fill="#c87810"/><rect x="89" y="36" width="22" height="6" rx="2" fill="#b06810"/><rect x="84" y="18" width="32" height="22" rx="5" fill="#d4a020"/><rect x="84" y="18" width="32" height="5" rx="5" fill="#f0c040"/><rect x="87" y="36" width="26" height="4" rx="1" fill="#b87010"/><rect x="76" y="78" width="48" height="38" rx="4" fill="url(#lbl-a)" stroke="#c4922a" stroke-width="1"/><rect x="76" y="78" width="48" height="5" rx="4" fill="#c4922a"/><text x="100" y="95" font-family="serif" font-size="7.5" font-weight="bold" fill="#6a3010" text-anchor="middle">ARGAN</text><text x="100" y="105" font-family="sans-serif" font-size="5.5" fill="#8a4018" text-anchor="middle">Huile Pure</text><text x="100" y="113" font-family="sans-serif" font-size="5" fill="#2d6b2d" text-anchor="middle" font-weight="bold">BIO ✓</text><rect x="78" y="72" width="5" height="40" rx="2" fill="white" opacity="0.18"/><ellipse cx="100" cy="85" rx="75" ry="62" fill="none" stroke="#c4922a" stroke-width="0.8" opacity="0.3"/></svg></div><div class="product-body"><span class="product-tag"><span class="ti-ar">الأكثر مبيعاً</span><span class="ti-fr">Best-seller</span><span class="ti-en">Best-seller</span><span class="ti-es">Más vendido</span></span><div class="product-name"><span class="ti-ar">زيت الأركان</span><span class="ti-fr">Huile d'Argan</span><span class="ti-en">Argan Oil</span><span class="ti-es">Aceite de Argán</span></div><p class="product-desc"><span class="t-ar">الذهب السائل من جبال الأطلس، غني بفيتامين E. مثالي للبشرة والشعر والطهي.</span><span class="t-fr">L'or liquide de l'Atlas, riche en vitamine E. Idéal pour la peau, les cheveux et la cuisine.</span><span class="t-en">Liquid gold from the Atlas, rich in vitamin E. Perfect for skin, hair and cooking.</span><span class="t-es">Oro líquido del Atlas, rico en vitamina E. Ideal para piel, cabello y cocina.</span></p></div><div class="product-price"><span class="price-main">89 MAD</span><span class="price-unit"> / 100ml &nbsp;·&nbsp; <span style="color:var(--gold2)">≈ $9</span></span></div><div class="product-footer"><span class="product-origin">📍 Agadir</span><button class="product-cta"><span class="ti-ar">اطلب الآن</span><span class="ti-fr">Commander</span><span class="ti-en">Order</span><span class="ti-es">Pedir</span></button></div></div>
+    <div class="product-block prod-olive"><div class="product-image" style="padding:0;overflow:hidden;background:none;"><svg viewBox="0 0 200 170" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%"><defs><linearGradient id="bg-o" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#051205"/><stop offset="100%" stop-color="#0a1e08"/></linearGradient><linearGradient id="glass-o" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1a5810"/><stop offset="50%" stop-color="#2a7018"/><stop offset="100%" stop-color="#155010"/></linearGradient><linearGradient id="oil-o" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#8ab840"/><stop offset="100%" stop-color="#4a8010"/></linearGradient></defs><rect width="200" height="170" fill="url(#bg-o)"/><ellipse cx="100" cy="90" rx="68" ry="55" fill="#0a2808" opacity="0.5"/><path d="M 35,140 Q 45,120 55,105 Q 65,90 55,70 Q 50,60 45,50" fill="none" stroke="#3a6818" stroke-width="3"/><ellipse cx="52" cy="92" rx="13" ry="6" fill="#3a7820" transform="rotate(-30,52,92)"/><ellipse cx="52" cy="92" rx="9" ry="4" fill="#28601a" transform="rotate(-30,52,92)"/><ellipse cx="62" cy="75" rx="11" ry="5" fill="#3a7820" transform="rotate(-10,62,75)"/><ellipse cx="48" cy="110" rx="12" ry="5" fill="#3a7820" transform="rotate(-40,48,110)"/><ellipse cx="56" cy="80" rx="7" ry="5" fill="#1a4010" transform="rotate(20,56,80)"/><ellipse cx="56" cy="80" rx="5" ry="3.5" fill="#2a5818" transform="rotate(20,56,80)"/><ellipse cx="45" cy="120" rx="6" ry="4" fill="#1a4010" transform="rotate(-10,45,120)"/><ellipse cx="110" cy="153" rx="28" ry="7" fill="#010802" opacity="0.7"/><rect x="85" y="68" width="50" height="83" rx="12" fill="url(#glass-o)"/><rect x="88" y="100" width="44" height="49" rx="9" fill="url(#oil-o)"/><ellipse cx="110" cy="100" rx="22" ry="4" fill="#b8d840" opacity="0.6"/><rect x="96" y="40" width="28" height="30" rx="4" fill="#1a5810"/><rect x="100" y="38" width="20" height="6" rx="2" fill="#155010"/><rect x="97" y="22" width="26" height="20" rx="5" fill="#c4922a"/><rect x="100" y="22" width="20" height="5" rx="3" fill="#d4a830"/><rect x="99" y="38" width="22" height="4" rx="1" fill="#a07018"/><rect x="88" y="75" width="44" height="40" rx="3" fill="#f5f0e0" stroke="#c4922a" stroke-width="1"/><rect x="88" y="75" width="44" height="6" rx="3" fill="#2a7018"/><text x="110" y="91" font-family="serif" font-size="7" font-weight="bold" fill="#1a5010" text-anchor="middle">OLIVE</text><text x="110" y="101" font-family="sans-serif" font-size="5.5" fill="#2a7018" text-anchor="middle">Extra Vierge</text><text x="110" y="110" font-family="sans-serif" font-size="5" fill="#c4922a" text-anchor="middle" font-weight="bold">BIO ✓</text><rect x="88" y="72" width="5" height="50" rx="2" fill="white" opacity="0.12"/><path d="M 160,135 Q 155,115 148,98 Q 140,82 150,65" fill="none" stroke="#3a6818" stroke-width="2.5"/><ellipse cx="146" cy="90" rx="12" ry="5" fill="#3a7820" transform="rotate(20,146,90)"/><ellipse cx="152" cy="72" rx="10" ry="4.5" fill="#3a7820" transform="rotate(10,152,72)"/><ellipse cx="152" cy="72" rx="6" ry="3" fill="#1a4010"/></svg></div><div class="product-body"><span class="product-tag"><span class="ti-ar">ضغط بارد</span><span class="ti-fr">Pression à froid</span><span class="ti-en">Cold pressed</span><span class="ti-es">Prensado frío</span></span><div class="product-name"><span class="ti-ar">زيت الزيتون البكر</span><span class="ti-fr">Huile d'Olive Vierge Extra</span><span class="ti-en">Extra Virgin Olive Oil</span><span class="ti-es">Aceite de Oliva V.E.</span></div><p class="product-desc"><span class="t-ar">زيتون مغربي أصيل يُعصر بارداً. طعم رفيع وفوائد لا تُحصى.</span><span class="t-fr">Olive marocaine pressée à froid. Goût raffiné et bienfaits innombrables.</span><span class="t-en">Moroccan olive cold-pressed. Refined taste and countless benefits.</span><span class="t-es">Aceituna marroquí prensada en frío. Sabor refinado y beneficios innumerables.</span></p></div><div class="product-price"><span class="price-main">55 MAD</span><span class="price-unit"> / litre &nbsp;·&nbsp; <span style="color:var(--gold2)">≈ $6</span></span></div><div class="product-footer"><span class="product-origin">📍 Marrakech</span><button class="product-cta"><span class="ti-ar">اطلب الآن</span><span class="ti-fr">Commander</span><span class="ti-en">Order</span><span class="ti-es">Pedir</span></button></div></div>
+    <div class="product-block prod-honey"><div class="product-image" style="padding:0;overflow:hidden;background:none;"><svg viewBox="0 0 200 170" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%"><defs><linearGradient id="bg-h" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#180d00"/><stop offset="100%" stop-color="#251500"/></linearGradient><linearGradient id="jar-h" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e8a810"/><stop offset="50%" stop-color="#f0c030"/><stop offset="100%" stop-color="#c88010"/></linearGradient><linearGradient id="honey-h" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f8d040"/><stop offset="100%" stop-color="#d08808"/></linearGradient><linearGradient id="lid-h" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#8a5010"/><stop offset="100%" stop-color="#5a3008"/></linearGradient></defs><rect width="200" height="170" fill="url(#bg-h)"/><ellipse cx="100" cy="95" rx="72" ry="58" fill="#2a1500" opacity="0.5"/><ellipse cx="44" cy="38" rx="8" ry="5" fill="#d4a020" opacity="0.7"/><line x1="40" y1="34" x2="46" y2="33" stroke="white" stroke-width="1" opacity="0.6"/><line x1="40" y1="36" x2="47" y2="37" stroke="white" stroke-width="1" opacity="0.6"/><ellipse cx="155" cy="44" rx="7" ry="4.5" fill="#d4a020" opacity="0.7"/><line x1="151" y1="40" x2="158" y2="39" stroke="white" stroke-width="1" opacity="0.6"/><g opacity="0.22" transform="translate(22,55)"><polygon points="12,0 22,6 22,18 12,24 2,18 2,6" fill="none" stroke="#d4a020" stroke-width="1.2"/><polygon points="34,0 44,6 44,18 34,24 24,18 24,6" fill="none" stroke="#d4a020" stroke-width="1.2"/><polygon points="12,24 22,30 22,42 12,48 2,42 2,30" fill="none" stroke="#d4a020" stroke-width="1.2"/><polygon points="34,24 44,30 44,42 34,48 24,42 24,30" fill="none" stroke="#d4a020" stroke-width="1.2"/><polygon points="23,12 33,18 33,30 23,36 13,30 13,18" fill="rgba(212,160,32,0.15)" stroke="#d4a020" stroke-width="1.2"/></g><ellipse cx="100" cy="152" rx="36" ry="9" fill="#0a0500" opacity="0.7"/><path d="M 65,88 Q 62,90 62,105 L 62,138 Q 62,148 72,150 L 128,150 Q 138,148 138,138 L 138,105 Q 138,90 135,88 Z" fill="url(#jar-h)"/><path d="M 65,110 Q 62,112 62,125 L 62,138 Q 62,148 72,150 L 128,150 Q 138,148 138,138 L 138,125 Q 138,112 135,110 Z" fill="url(#honey-h)"/><ellipse cx="100" cy="110" rx="36" ry="7" fill="#f8e050" opacity="0.65"/><g opacity="0.18" transform="translate(68,115)"><polygon points="10,0 18,5 18,15 10,20 2,15 2,5" fill="none" stroke="#8a5010" stroke-width="0.8"/><polygon points="26,0 34,5 34,15 26,20 18,15 18,5" fill="none" stroke="#8a5010" stroke-width="0.8"/><polygon points="42,0 50,5 50,15 42,20 34,15 34,5" fill="none" stroke="#8a5010" stroke-width="0.8"/><polygon points="10,20 18,25 18,35 10,40 2,35 2,25" fill="none" stroke="#8a5010" stroke-width="0.8"/><polygon points="26,20 34,25 34,35 26,40 18,35 18,25" fill="none" stroke="#8a5010" stroke-width="0.8"/></g><path d="M 125,108 Q 127,120 126,130" stroke="#e8a010" stroke-width="3" fill="none" stroke-linecap="round"/><ellipse cx="126" cy="133" rx="4" ry="5" fill="#e8a010"/><ellipse cx="100" cy="88" rx="36" ry="10" fill="#f0b820"/><ellipse cx="100" cy="88" rx="34" ry="8" fill="#f8d040"/><path d="M 62,68 Q 62,55 72,52 L 128,52 Q 138,55 138,68 L 138,90 Q 102,96 62,90 Z" fill="url(#lid-h)"/><ellipse cx="100" cy="68" rx="38" ry="12" fill="#7a4510"/><ellipse cx="100" cy="66" rx="35" ry="10" fill="#8a5010"/><ellipse cx="100" cy="66" rx="28" ry="8" fill="#c4922a" opacity="0.4"/><text x="100" y="69" font-family="serif" font-size="7" font-weight="bold" fill="#f0d080" text-anchor="middle">MIEL PUR</text><ellipse cx="100" cy="55" rx="10" ry="5" fill="#6a3808"/><ellipse cx="100" cy="53" rx="8" ry="4" fill="#8a5010"/><rect x="70" y="92" width="60" height="18" rx="3" fill="#fff8e0" stroke="#c4922a" stroke-width="0.8"/><text x="100" y="103" font-family="sans-serif" font-size="6.5" font-weight="bold" fill="#8a4010" text-anchor="middle">100% Naturel</text><path d="M 66,92 Q 64,95 64,118" stroke="white" stroke-width="4" opacity="0.1" fill="none" stroke-linecap="round"/></svg></div><div class="product-body"><span class="product-tag"><span class="ti-ar">طبيعي 100%</span><span class="ti-fr">100% naturel</span><span class="ti-en">100% natural</span><span class="ti-es">100% natural</span></span><div class="product-name"><span class="ti-ar">العسل المغربي الأصيل</span><span class="ti-fr">Miel Marocain Authentique</span><span class="ti-en">Authentic Moroccan Honey</span><span class="ti-es">Miel Marroquí Auténtica</span></div><p class="product-desc"><span class="t-ar">عسل الأزهار البرية من جبال المغرب، غير مُعالج وغني بمضادات حيوية طبيعية.</span><span class="t-fr">Miel de fleurs sauvages des montagnes, non traité et riche en antibiotiques naturels.</span><span class="t-en">Wild flower honey from Morocco's mountains, untreated and rich in natural antibiotics.</span><span class="t-es">Miel de flores silvestres de las montañas, sin tratar y rico en antibióticos naturales.</span></p></div><div class="product-price"><span class="price-main">449 MAD</span><span class="price-unit"> / kg &nbsp;·&nbsp; <span style="color:var(--gold2)">≈ $45</span></span></div><div class="product-footer"><span class="product-origin">📍 Ifrane</span><button class="product-cta"><span class="ti-ar">اطلب الآن</span><span class="ti-fr">Commander</span><span class="ti-en">Order</span><span class="ti-es">Pedir</span></button></div></div>
+    <div class="product-block prod-herbs"><div class="product-image" style="padding:0;overflow:hidden;background:none;"><svg viewBox="0 0 200 170" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%"><defs><linearGradient id="bg-hr" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#050f03"/><stop offset="100%" stop-color="#0a1806"/></linearGradient></defs><rect width="200" height="170" fill="url(#bg-hr)"/><ellipse cx="100" cy="95" rx="70" ry="58" fill="#0d2208" opacity="0.5"/><line x1="75" y1="155" x2="60" y2="40" stroke="#5a4880" stroke-width="2"/><ellipse cx="60" cy="46" rx="5" ry="9" fill="#7060a8" opacity="0.7" transform="rotate(10,60,46)"/><ellipse cx="58" cy="58" rx="4" ry="7" fill="#6050a0" opacity="0.7" transform="rotate(8,58,58)"/><ellipse cx="61" cy="70" rx="4" ry="7" fill="#7060a8" opacity="0.65" transform="rotate(12,61,70)"/><line x1="100" y1="155" x2="85" y2="35" stroke="#5a7820" stroke-width="2"/><line x1="100" y1="155" x2="95" y2="32" stroke="#4a6818" stroke-width="2"/><ellipse cx="83" cy="52" rx="8" ry="4" fill="#3a7820" transform="rotate(-25,83,52)"/><ellipse cx="87" cy="65" rx="8" ry="4" fill="#4a8828" transform="rotate(-20,87,65)"/><ellipse cx="84" cy="78" rx="7" ry="3.5" fill="#3a7020" transform="rotate(-30,84,78)"/><ellipse cx="94" cy="50" rx="7" ry="3.5" fill="#4a8020" transform="rotate(-10,94,50)"/><ellipse cx="93" cy="62" rx="8" ry="4" fill="#3a7018" transform="rotate(-15,93,62)"/><ellipse cx="91" cy="75" rx="7" ry="3.5" fill="#4a8028" transform="rotate(-20,91,75)"/><line x1="110" y1="155" x2="108" y2="38" stroke="#6a7020" stroke-width="2.5"/><ellipse cx="106" cy="55" rx="10" ry="5" fill="#5a7818" transform="rotate(-5,106,55)"/><ellipse cx="108" cy="70" rx="11" ry="5" fill="#4a6810" transform="rotate(5,108,70)"/><ellipse cx="105" cy="85" rx="10" ry="5" fill="#5a7818" transform="rotate(-8,105,85)"/><line x1="128" y1="155" x2="138" y2="42" stroke="#4a6818" stroke-width="2"/><line x1="128" y1="155" x2="145" y2="48" stroke="#3a5810" stroke-width="2"/><g transform="translate(135,55)"><line x1="-8" y1="0" x2="8" y2="0" stroke="#3a6810" stroke-width="1.5"/><line x1="-8" y1="8" x2="8" y2="8" stroke="#4a7818" stroke-width="1.5"/><line x1="-8" y1="16" x2="8" y2="16" stroke="#3a6810" stroke-width="1.5"/><line x1="-8" y1="24" x2="8" y2="24" stroke="#4a7818" stroke-width="1.5"/><line x1="-6" y1="32" x2="6" y2="32" stroke="#3a6810" stroke-width="1.5"/></g><line x1="155" y1="155" x2="162" y2="50" stroke="#2a8038" stroke-width="2"/><ellipse cx="161" cy="62" rx="10" ry="6" fill="#2a8030" transform="rotate(15,161,62)"/><ellipse cx="163" cy="76" rx="9" ry="5" fill="#3a9038" transform="rotate(10,163,76)"/><ellipse cx="160" cy="90" rx="10" ry="5" fill="#2a8028" transform="rotate(18,160,90)"/><ellipse cx="108" cy="138" rx="36" ry="8" fill="none" stroke="#c4922a" stroke-width="3"/><ellipse cx="108" cy="134" rx="33" ry="7" fill="none" stroke="#d4a830" stroke-width="2"/><circle cx="60" cy="38" r="4" fill="#9080c0"/><circle cx="93" cy="30" r="3" fill="#e0e080"/><circle cx="108" cy="32" r="5" fill="#c8d060"/><circle cx="145" cy="40" r="3.5" fill="#e0e878"/><circle cx="163" cy="44" r="4" fill="#80d068"/><rect x="72" y="142" width="70" height="20" rx="4" fill="#f5ead8" stroke="#c4922a" stroke-width="1"/><text x="107" y="153" font-family="sans-serif" font-size="6.5" font-weight="bold" fill="#2d6b2d" text-anchor="middle">HERBES SÉCHÉES BIO</text><ellipse cx="35" cy="145" rx="6" ry="3" fill="#8070b8" opacity="0.5" transform="rotate(20,35,145)"/><ellipse cx="172" cy="138" rx="5" ry="3" fill="#2a8028" opacity="0.5" transform="rotate(-15,172,138)"/></svg></div><div class="product-body"><span class="product-tag"><span class="ti-ar">مجفف طبيعياً</span><span class="ti-fr">Séché naturellement</span><span class="ti-en">Naturally dried</span><span class="ti-es">Secado natural</span></span><div class="product-name"><span class="ti-ar">الأعشاب الطبية والعطرية</span><span class="ti-fr">Herbes Médicinales</span><span class="ti-en">Medicinal Herbs</span><span class="ti-es">Hierbas Medicinales</span></div><p class="product-desc"><span class="t-ar">زعتر، أوريغانو، الخزامى، الشيح وأكثر من 20 عشبة مغربية أصيلة.</span><span class="t-fr">Thym, origan, lavande, armoise et plus de 20 herbes marocaines authentiques.</span><span class="t-en">Thyme, oregano, lavender and over 20 authentic Moroccan herbs.</span><span class="t-es">Tomillo, orégano, lavanda y más de 20 hierbas marroquíes auténticas.</span></p></div><div class="product-price"><span class="price-main">35 MAD</span><span class="price-unit"> / 100g &nbsp;·&nbsp; <span style="color:var(--gold2)">≈ $3.5</span></span></div><div class="product-footer"><span class="product-origin">📍 Rif</span><button class="product-cta"><span class="ti-ar">اطلب الآن</span><span class="ti-fr">Commander</span><span class="ti-en">Order</span><span class="ti-es">Pedir</span></button></div></div>
+    <div class="product-block prod-dates"><div class="product-image" style="padding:0;overflow:hidden;background:none;"><svg viewBox="0 0 200 170" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%"><defs><linearGradient id="bg-d" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#180800"/><stop offset="100%" stop-color="#281200"/></linearGradient><linearGradient id="bowl-d" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#8a4818"/><stop offset="100%" stop-color="#5a2a08"/></linearGradient></defs><rect width="200" height="170" fill="url(#bg-d)"/><ellipse cx="100" cy="100" rx="75" ry="60" fill="#2a1000" opacity="0.4"/><path d="M 100,30 Q 80,50 60,45" fill="none" stroke="#2a5010" stroke-width="2.5"/><path d="M 100,30 Q 120,45 140,42" fill="none" stroke="#2a5010" stroke-width="2.5"/><path d="M 100,30 Q 90,55 75,58" fill="none" stroke="#1e4008" stroke-width="2"/><path d="M 100,30 Q 110,50 125,55" fill="none" stroke="#1e4008" stroke-width="2"/><ellipse cx="72" cy="47" rx="12" ry="5" fill="#2a6010" transform="rotate(-10,72,47)"/><ellipse cx="55" cy="44" rx="11" ry="4" fill="#226010" transform="rotate(-5,55,44)"/><ellipse cx="138" cy="44" rx="11" ry="4" fill="#2a6010" transform="rotate(8,138,44)"/><ellipse cx="126" cy="57" rx="10" ry="4" fill="#226010" transform="rotate(12,126,57)"/><ellipse cx="78" cy="58" rx="10" ry="4" fill="#2a6010" transform="rotate(-15,78,58)"/><ellipse cx="100" cy="152" rx="48" ry="10" fill="#0a0400" opacity="0.6"/><path d="M 45,115 Q 42,118 42,125 Q 42,145 100,148 Q 158,145 158,125 Q 158,118 155,115 Z" fill="#6a3810"/><path d="M 45,108 Q 42,112 42,118 L 158,118 Q 158,112 155,108 Z" fill="url(#bowl-d)"/><ellipse cx="100" cy="108" rx="58" ry="16" fill="#8a5020"/><ellipse cx="100" cy="106" rx="55" ry="14" fill="#9a5828"/><path d="M 52,108 Q 68,103 84,105 Q 100,107 116,105 Q 132,103 148,108" fill="none" stroke="#6a3810" stroke-width="1" opacity="0.5"/><ellipse cx="100" cy="107" rx="50" ry="11" fill="#2a1000"/><ellipse cx="75" cy="102" rx="13" ry="8" fill="#6a2808" transform="rotate(-15,75,102)"/><ellipse cx="75" cy="102" rx="10" ry="6" fill="#7a3010" transform="rotate(-15,75,102)"/><line x1="68" y1="100" x2="82" y2="104" stroke="#4a1808" stroke-width="1"/><ellipse cx="100" cy="99" rx="13" ry="8" fill="#722c08"/><ellipse cx="100" cy="99" rx="10" ry="6" fill="#823410"/><line x1="93" y1="99" x2="107" y2="99" stroke="#4a1808" stroke-width="1"/><ellipse cx="125" cy="102" rx="13" ry="8" fill="#6a2808" transform="rotate(15,125,102)"/><ellipse cx="125" cy="102" rx="10" ry="6" fill="#7a3010" transform="rotate(15,125,102)"/><ellipse cx="85" cy="110" rx="13" ry="8" fill="#783208"/><ellipse cx="85" cy="110" rx="10" ry="6" fill="#883a10"/><line x1="78" y1="110" x2="92" y2="110" stroke="#4a1808" stroke-width="1"/><ellipse cx="112" cy="110" rx="13" ry="8" fill="#703008" transform="rotate(10,112,110)"/><ellipse cx="112" cy="110" rx="10" ry="6" fill="#803810" transform="rotate(10,112,110)"/><ellipse cx="82" cy="107" rx="4" ry="2" fill="white" opacity="0.12" transform="rotate(-10,82,107)"/><ellipse cx="109" cy="107" rx="4" ry="2" fill="white" opacity="0.12" transform="rotate(5,109,107)"/><rect x="62" y="130" width="76" height="18" rx="4" fill="#f5e8d0" stroke="#c4922a" stroke-width="1"/><text x="100" y="141" font-family="sans-serif" font-size="6.5" font-weight="bold" fill="#6a2808" text-anchor="middle">DATTES MEDJOOL</text><text x="100" y="150" font-family="sans-serif" font-size="5" fill="#c4922a" text-anchor="middle">Oasis du Drâa ✓</text></svg></div><div class="product-body"><span class="product-tag"><span class="ti-ar">موسمي · طازج</span><span class="ti-fr">Saisonnier · Frais</span><span class="ti-en">Seasonal · Fresh</span><span class="ti-es">Estacional · Fresco</span></span><div class="product-name"><span class="ti-ar">تمور مجهول المغربية</span><span class="ti-fr">Dattes Medjool</span><span class="ti-en">Medjool Dates</span><span class="ti-es">Dátiles Medjool</span></div><p class="product-desc"><span class="t-ar">ملكة التمور من واحات درعة — كبيرة، طرية، غنية بالمعادن.</span><span class="t-fr">La reine des dattes des oasis du Draa — grandes, tendres et riches en minéraux.</span><span class="t-en">The queen of dates from the Draa oases — large, tender and rich in minerals.</span><span class="t-es">La reina de los dátiles de los oasis Draa — grandes, tiernas y ricas en minerales.</span></p></div><div class="product-price"><span class="price-main">79 MAD</span><span class="price-unit"> / kg &nbsp;·&nbsp; <span style="color:var(--gold2)">≈ $8</span></span></div><div class="product-footer"><span class="product-origin">📍 Draa</span><button class="product-cta"><span class="ti-ar">اطلب الآن</span><span class="ti-fr">Commander</span><span class="ti-en">Order</span><span class="ti-es">Pedir</span></button></div></div>
+    <div class="product-block prod-rose"><div class="product-image" style="padding:0;overflow:hidden;background:none;"><svg viewBox="0 0 200 170" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%"><defs><linearGradient id="bg-r" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#180508"/><stop offset="100%" stop-color="#220a10"/></linearGradient><linearGradient id="bot-r" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e8c8d5"/><stop offset="100%" stop-color="#d0a8b8"/></linearGradient><linearGradient id="liq-r" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f0d8e8"/><stop offset="100%" stop-color="#d8a8c0"/></linearGradient></defs><rect width="200" height="170" fill="url(#bg-r)"/><ellipse cx="100" cy="90" rx="68" ry="55" fill="#300815" opacity="0.4"/><ellipse cx="42" cy="62" rx="15" ry="12" fill="#c03060" opacity="0.8"/><ellipse cx="40" cy="58" rx="10" ry="8" fill="#d04070"/><ellipse cx="44" cy="64" rx="9" ry="7" fill="#b82858"/><ellipse cx="38" cy="66" rx="8" ry="6" fill="#c83568"/><ellipse cx="48" cy="58" rx="7" ry="5" fill="#d04070"/><circle cx="42" cy="61" r="4" fill="#e06080"/><ellipse cx="155" cy="55" rx="12" ry="10" fill="#c83060" opacity="0.85"/><ellipse cx="153" cy="52" rx="8" ry="6" fill="#d84070"/><ellipse cx="158" cy="57" rx="7" ry="5" fill="#b82858"/><circle cx="155" cy="54" r="3" fill="#e06080"/><ellipse cx="165" cy="100" rx="13" ry="11" fill="#c02858" opacity="0.8"/><ellipse cx="163" cy="97" rx="9" ry="7" fill="#d04070"/><ellipse cx="168" cy="103" rx="8" ry="6" fill="#b82050"/><circle cx="165" cy="99" r="3.5" fill="#e05878"/><ellipse cx="32" cy="74" rx="10" ry="4" fill="#2a6018" transform="rotate(-20,32,74)"/><ellipse cx="52" cy="72" rx="9" ry="4" fill="#226010" transform="rotate(15,52,72)"/><ellipse cx="158" cy="66" rx="8" ry="3.5" fill="#2a6018" transform="rotate(10,158,66)"/><ellipse cx="175" cy="112" rx="9" ry="4" fill="#226010" transform="rotate(-15,175,112)"/><ellipse cx="95" cy="153" rx="25" ry="6" fill="#100205" opacity="0.7"/><rect x="72" y="72" width="46" height="78" rx="10" fill="url(#bot-r)"/><rect x="75" y="100" width="40" height="48" rx="7" fill="url(#liq-r)" opacity="0.7"/><ellipse cx="95" cy="100" rx="20" ry="4" fill="#f8e0ee" opacity="0.6"/><rect x="82" y="44" width="26" height="30" rx="4" fill="#d8b8c8"/><rect x="86" y="42" width="18" height="7" rx="2" fill="#c8a8b8"/><rect x="80" y="26" width="30" height="20" rx="6" fill="#c4922a"/><rect x="80" y="26" width="30" height="5" rx="6" fill="#d4a830"/><rect x="84" y="42" width="22" height="4" rx="1" fill="#a07018"/><rect x="74" y="78" width="42" height="42" rx="4" fill="white" stroke="#c03060" stroke-width="1.2"/><rect x="74" y="78" width="42" height="8" rx="4" fill="#c03060"/><text x="95" y="90" font-family="serif" font-size="6" font-weight="bold" fill="white" text-anchor="middle">EAU DE ROSE</text><text x="95" y="101" font-family="sans-serif" font-size="5.5" fill="#c03060" text-anchor="middle">Damascène</text><text x="95" y="111" font-family="sans-serif" font-size="5.5" fill="#8a2040" text-anchor="middle">Ouarzazate</text><text x="95" y="116" font-family="sans-serif" font-size="4.5" fill="#c4922a" text-anchor="middle">100% Naturelle ✓</text><rect x="74" y="75" width="4" height="55" rx="2" fill="white" opacity="0.2"/><ellipse cx="35" cy="125" rx="5" ry="3" fill="#d04870" opacity="0.5" transform="rotate(20,35,125)"/><ellipse cx="162" cy="138" rx="5" ry="3" fill="#c03060" opacity="0.45" transform="rotate(-15,162,138)"/></svg></div><div class="product-body"><span class="product-tag"><span class="ti-ar">عطري فاخر</span><span class="ti-fr">Parfum de luxe</span><span class="ti-en">Luxury fragrance</span><span class="ti-es">Fragancia de lujo</span></span><div class="product-name"><span class="ti-ar">ماء الورد وزيت الورد</span><span class="ti-fr">Eau & Huile de Rose</span><span class="ti-en">Rose Water & Oil</span><span class="ti-es">Agua & Aceite de Rosa</span></div><p class="product-desc"><span class="t-ar">من وادي ورزازات — ماء ورد دمشقي وزيت مقطّر لعناية استثنائية.</span><span class="t-fr">De la vallée d'Ouarzazate — eau de rose damascène et huile distillée.</span><span class="t-en">From the Ouarzazate valley — damascene rose water and distilled oil.</span><span class="t-es">Del valle de Ouarzazate — agua de rosa damascena y aceite destilado.</span></p></div><div class="product-price"><span class="price-main">49 MAD</span><span class="price-unit"> / 100ml &nbsp;·&nbsp; <span style="color:var(--gold2)">≈ $5</span></span></div><div class="product-footer"><span class="product-origin">📍 Ouarzazate</span><button class="product-cta"><span class="ti-ar">اطلب الآن</span><span class="ti-fr">Commander</span><span class="ti-en">Order</span><span class="ti-es">Pedir</span></button></div></div>
+    <div class="product-block prod-amlou"><div class="product-image" style="padding:0;overflow:hidden;background:none;"><svg viewBox="0 0 200 170" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%"><defs><linearGradient id="bg-am" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#120800"/><stop offset="100%" stop-color="#1e1000"/></linearGradient><linearGradient id="bowl-am" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#7a4820"/><stop offset="100%" stop-color="#4a2808"/></linearGradient><linearGradient id="paste-am" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#8a5010"/><stop offset="100%" stop-color="#6a3808"/></linearGradient></defs><rect width="200" height="170" fill="url(#bg-am)"/><ellipse cx="100" cy="100" rx="72" ry="58" fill="#200e00" opacity="0.4"/><ellipse cx="35" cy="85" rx="10" ry="7" fill="#7a4010" transform="rotate(-20,35,85)"/><ellipse cx="35" cy="85" rx="7" ry="5" fill="#9a5818" transform="rotate(-20,35,85)"/><ellipse cx="165" cy="90" rx="9" ry="6" fill="#7a4010" transform="rotate(15,165,90)"/><ellipse cx="165" cy="90" rx="6" ry="4" fill="#9a5818" transform="rotate(15,165,90)"/><ellipse cx="42" cy="58" rx="12" ry="7" fill="#c89050" transform="rotate(-25,42,58)"/><ellipse cx="42" cy="58" rx="9" ry="5" fill="#d4a060" transform="rotate(-25,42,58)"/><line x1="35" y1="57" x2="49" y2="59" stroke="#9a6030" stroke-width="1" transform="rotate(-25,42,58)"/><ellipse cx="160" cy="60" rx="11" ry="7" fill="#c89050" transform="rotate(20,160,60)"/><ellipse cx="160" cy="60" rx="8" ry="5" fill="#d4a060" transform="rotate(20,160,60)"/><ellipse cx="145" cy="45" rx="10" ry="6" fill="#c89050" transform="rotate(10,145,45)"/><ellipse cx="50" cy="45" rx="10" ry="6" fill="#c89050" transform="rotate(-15,50,45)"/><ellipse cx="100" cy="152" rx="50" ry="10" fill="#080300" opacity="0.65"/><path d="M 42,120 Q 38,124 38,132 Q 38,148 100,152 Q 162,148 162,132 Q 162,124 158,120 Z" fill="#5a3010"/><path d="M 42,112 Q 38,116 38,122 L 162,122 Q 162,116 158,112 Z" fill="url(#bowl-am)"/><ellipse cx="100" cy="112" rx="60" ry="16" fill="#8a5020"/><ellipse cx="100" cy="110" rx="57" ry="14" fill="#9a5828"/><path d="M 48,112 Q 68,107 88,110 Q 108,113 128,110 Q 148,107 152,112" fill="none" stroke="#6a3810" stroke-width="1" opacity="0.4"/><ellipse cx="100" cy="110" rx="52" ry="12" fill="#2a1200"/><ellipse cx="100" cy="109" rx="48" ry="10" fill="url(#paste-am)"/><ellipse cx="100" cy="108" rx="44" ry="8" fill="#7a4010" opacity="0.7"/><path d="M 80,106 Q 90,110 100,107 Q 110,104 120,108" fill="none" stroke="#e8a010" stroke-width="2.5" stroke-linecap="round"/><path d="M 85,110 Q 95,107 105,110" fill="none" stroke="#f0b820" stroke-width="2" stroke-linecap="round"/><ellipse cx="78" cy="106" rx="10" ry="6" fill="#c89050"/><ellipse cx="78" cy="106" rx="7" ry="4" fill="#d4a060"/><line x1="71" y1="106" x2="85" y2="106" stroke="#9a6030" stroke-width="0.8"/><ellipse cx="100" cy="103" rx="10" ry="6" fill="#c89050"/><ellipse cx="100" cy="103" rx="7" ry="4" fill="#d4a060"/><line x1="93" y1="103" x2="107" y2="103" stroke="#9a6030" stroke-width="0.8"/><ellipse cx="122" cy="106" rx="10" ry="6" fill="#c89050" transform="rotate(15,122,106)"/><ellipse cx="122" cy="106" rx="7" ry="4" fill="#d4a060" transform="rotate(15,122,106)"/><rect x="60" y="132" width="80" height="20" rx="4" fill="#f5e8d0" stroke="#c4922a" stroke-width="1"/><text x="100" y="142" font-family="serif" font-size="7" font-weight="bold" fill="#6a2808" text-anchor="middle">AMLOU BIO</text><text x="100" y="150" font-family="sans-serif" font-size="5" fill="#c4922a" text-anchor="middle">Amandes · Argan · Miel</text></svg></div><div class="product-body"><span class="product-tag"><span class="ti-ar">تراثي</span><span class="ti-fr">Patrimoine</span><span class="ti-en">Heritage</span><span class="ti-es">Patrimonio</span></span><div class="product-name"><span class="ti-ar">أملو اللوز المغربي</span><span class="ti-fr">Amlou aux Amandes</span><span class="ti-en">Moroccan Almond Amlou</span><span class="ti-es">Amlou de Almendras</span></div><p class="product-desc"><span class="t-ar">مزيج تقليدي من اللوز المحمّص وزيت الأركان والعسل — طعم لا يُقاوم.</span><span class="t-fr">Mélange traditionnel d'amandes grillées, d'huile d'argan et de miel.</span><span class="t-en">Traditional blend of roasted almonds, argan oil and honey — irresistible.</span><span class="t-es">Mezcla tradicional de almendras tostadas, aceite de argán y miel.</span></p></div><div class="product-price"><span class="price-main">99 MAD</span><span class="price-unit"> / kg &nbsp;·&nbsp; <span style="color:var(--gold2)">≈ $10</span></span></div><div class="product-footer"><span class="product-origin">📍 Souss</span><button class="product-cta"><span class="ti-ar">اطلب الآن</span><span class="ti-fr">Commander</span><span class="ti-en">Order</span><span class="ti-es">Pedir</span></button></div></div>
+    <div class="product-block prod-safran"><div class="product-image" style="padding:0;overflow:hidden;background:none;"><svg viewBox="0 0 200 170" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%"><defs><linearGradient id="bg-s" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#150500"/><stop offset="100%" stop-color="#220a02"/></linearGradient><linearGradient id="tin-s" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#c4922a"/><stop offset="100%" stop-color="#8a5810"/></linearGradient><linearGradient id="lid-s" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#d4a020"/><stop offset="100%" stop-color="#a07010"/></linearGradient></defs><rect width="200" height="170" fill="url(#bg-s)"/><ellipse cx="100" cy="90" rx="70" ry="55" fill="#280a00" opacity="0.4"/><g transform="translate(38,60)"><ellipse cx="0" cy="-15" rx="7" ry="12" fill="#8060b8" transform="rotate(-20,0,-15)"/><ellipse cx="12" cy="-12" rx="7" ry="12" fill="#7050a8" transform="rotate(10,12,-12)"/><ellipse cx="-12" cy="-10" rx="7" ry="12" fill="#8060b8" transform="rotate(-35,-12,-10)"/><ellipse cx="6" cy="-5" rx="7" ry="12" fill="#7858b0" transform="rotate(15,6,-5)"/><ellipse cx="-6" cy="-3" rx="7" ry="12" fill="#6848a0" transform="rotate(-25,-6,-3)"/><circle cx="0" cy="0" r="6" fill="#e8b820"/><line x1="0" y1="0" x2="-6" y2="-22" stroke="#c01018" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="0" x2="0" y2="-24" stroke="#d01820" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="0" x2="6" y2="-22" stroke="#b01010" stroke-width="1.5" stroke-linecap="round"/><ellipse cx="-6" cy="-22" rx="3" ry="4" fill="#e02020"/><ellipse cx="0" cy="-24" rx="3" ry="4" fill="#e82020"/><ellipse cx="6" cy="-22" rx="3" ry="4" fill="#e02020"/><line x1="0" y1="0" x2="-20" y2="18" stroke="#306018" stroke-width="2"/><line x1="0" y1="0" x2="20" y2="16" stroke="#2a5818" stroke-width="2"/></g><g transform="translate(162,65)"><ellipse cx="0" cy="-12" rx="6" ry="10" fill="#7858b0" transform="rotate(-15,0,-12)"/><ellipse cx="10" cy="-10" rx="6" ry="10" fill="#6848a0" transform="rotate(15,10,-10)"/><ellipse cx="-10" cy="-8" rx="5" ry="9" fill="#7060b8" transform="rotate(-30,-10,-8)"/><circle cx="0" cy="0" r="5" fill="#e0a818"/><line x1="0" y1="0" x2="-5" y2="-18" stroke="#c01018" stroke-width="1.2" stroke-linecap="round"/><line x1="0" y1="0" x2="0" y2="-20" stroke="#d01820" stroke-width="1.2" stroke-linecap="round"/><line x1="0" y1="0" x2="5" y2="-18" stroke="#b01010" stroke-width="1.2" stroke-linecap="round"/><ellipse cx="0" cy="-20" rx="2.5" ry="3.5" fill="#e02020"/></g><ellipse cx="100" cy="152" rx="36" ry="8" fill="#080200" opacity="0.65"/><rect x="68" y="88" width="64" height="60" rx="6" fill="url(#tin-s)"/><rect x="68" y="98" width="64" height="2" fill="#a07010" opacity="0.5"/><rect x="68" y="108" width="64" height="2" fill="#a07010" opacity="0.5"/><rect x="68" y="118" width="64" height="2" fill="#a07010" opacity="0.5"/><rect x="68" y="128" width="64" height="2" fill="#a07010" opacity="0.5"/><rect x="71" y="93" width="58" height="50" rx="4" fill="#1a0800"/><g transform="translate(100,118)"><line x1="0" y1="0" x2="-22" y2="-18" stroke="#c01010" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="0" x2="-8" y2="-24" stroke="#d01818" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="0" x2="8" y2="-24" stroke="#c01010" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="0" x2="22" y2="-18" stroke="#d01818" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="0" x2="-26" y2="-5" stroke="#b81010" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="0" x2="26" y2="-5" stroke="#c81018" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="0" x2="-20" y2="12" stroke="#c01010" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="0" x2="20" y2="12" stroke="#d01818" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="0" x2="0" y2="18" stroke="#c01010" stroke-width="1.5" stroke-linecap="round"/><circle cx="-22" cy="-18" r="2.5" fill="#f0c020"/><circle cx="-8" cy="-24" r="2.5" fill="#e8b818"/><circle cx="8" cy="-24" r="2.5" fill="#f0c020"/><circle cx="22" cy="-18" r="2.5" fill="#e8b818"/><circle cx="-26" cy="-5" r="2" fill="#f0c020"/><circle cx="26" cy="-5" r="2" fill="#e8b818"/><circle cx="-20" cy="12" r="2" fill="#f0c020"/><circle cx="20" cy="12" r="2" fill="#e8b818"/><circle cx="0" cy="18" r="2" fill="#f0c020"/><circle cx="0" cy="0" r="4" fill="#e8b820" opacity="0.6"/></g><rect x="65" y="76" width="70" height="16" rx="6" fill="url(#lid-s)"/><rect x="65" y="76" width="70" height="6" rx="6" fill="#e8c030"/><text x="100" y="87" font-family="serif" font-size="6.5" font-weight="bold" fill="#1a0800" text-anchor="middle">SAFRAN · TALIOUINE</text><ellipse cx="100" cy="76" rx="12" ry="4" fill="#c4922a"/><ellipse cx="100" cy="74" rx="10" ry="3.5" fill="#d4a020"/></svg></div><div class="product-body"><span class="product-tag"><span class="ti-ar">الذهب الأحمر</span><span class="ti-fr">L'or rouge</span><span class="ti-en">Red gold</span><span class="ti-es">Oro rojo</span></span><div class="product-name"><span class="ti-ar">زعفران تيليوين</span><span class="ti-fr">Safran de Taliouine</span><span class="ti-en">Taliouine Saffron</span><span class="ti-es">Azafrán de Taliouine</span></div><p class="product-desc"><span class="t-ar">أجود زعفران في العالم، يُحصد يدوياً من تيليوين — أروما استثنائية.</span><span class="t-fr">Un des meilleurs safrans au monde, récolté à la main à Taliouine.</span><span class="t-en">One of the world's finest saffrons, hand-harvested in Taliouine.</span><span class="t-es">Uno de los mejores azafranes del mundo, cosechado a mano en Taliouine.</span></p></div><div class="product-price"><span class="price-main">35 MAD</span><span class="price-unit"> / g &nbsp;·&nbsp; <span style="color:var(--gold2)">≈ $3.5</span></span></div><div class="product-footer"><span class="product-origin">📍 Taliouine</span><button class="product-cta"><span class="ti-ar">اطلب الآن</span><span class="ti-fr">Commander</span><span class="ti-en">Order</span><span class="ti-es">Pedir</span></button></div></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     INTERACTIVE ILLUSTRATED MAP — Products by Region
+══════════════════════════════════════════════ -->
+<section class="map-section reveal" id="map-section">
+  <div class="map-section-inner">
+    <div class="map-header">
+      <span class="section-eyebrow"><span class="ti-ar">منتجات المغرب حسب الجهة</span><span class="ti-fr">Produits du Maroc par région</span><span class="ti-en">Morocco's Products by Region</span><span class="ti-es">Productos de Marruecos por región</span></span>
+      <h2 class="section-title"><span class="t-ar">خريطة <span class="gold">كنوز</span> المغرب</span><span class="t-fr">Carte des <span class="gold">Trésors</span> Marocains</span><span class="t-en">Map of Moroccan <span class="gold">Treasures</span></span><span class="t-es">Mapa de los <span class="gold">Tesoros</span> Marroquíes</span></h2>
+      <p><span class="t-ar">انقر على أي جهة لاكتشاف منتجاتها الطبيعية</span><span class="t-fr">Cliquez sur une région pour découvrir ses produits</span><span class="t-en">Click any region to discover its natural products</span><span class="t-es">Haz clic en una región para descubrir sus productos</span></p>
+    </div>
+    <div class="map-container">
+      <!-- SVG Map -->
+      <div class="map-svg-wrap">
+        <svg class="morocco-map" viewBox="0 0 520 780" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="mg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1a5a1a"/><stop offset="100%" stop-color="#2d7a2d"/></linearGradient>
+            <linearGradient id="mg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#166016"/><stop offset="100%" stop-color="#267026"/></linearGradient>
+            <linearGradient id="mg3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1c641c"/><stop offset="100%" stop-color="#2e7a2e"/></linearGradient>
+            <linearGradient id="mg4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#185818"/><stop offset="100%" stop-color="#28682a"/></linearGradient>
+            <linearGradient id="mg5" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#20661c"/><stop offset="100%" stop-color="#327830"/></linearGradient>
+            <linearGradient id="mg6" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#145214"/><stop offset="100%" stop-color="#246224"/></linearGradient>
+            <linearGradient id="mg7" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1e681a"/><stop offset="100%" stop-color="#307a2c"/></linearGradient>
+            <linearGradient id="mg8" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1a601a"/><stop offset="100%" stop-color="#2c722a"/></linearGradient>
+            <linearGradient id="mg9" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#166216"/><stop offset="100%" stop-color="#26722a"/></linearGradient>
+            <linearGradient id="mg10" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#185a18"/><stop offset="100%" stop-color="#286828"/></linearGradient>
+            <linearGradient id="mgs1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#b08828"/><stop offset="100%" stop-color="#c8a040"/></linearGradient>
+            <linearGradient id="mgs2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#a07820"/><stop offset="100%" stop-color="#b89038"/></linearGradient>
+            <filter id="glow"><feGaussianBlur stdDeviation="3" result="blur"/><feComposite in="SourceGraphic" in2="blur" operator="over"/></filter>
+            <filter id="mshadow"><feDropShadow dx="1" dy="2" stdDeviation="4" flood-color="rgba(0,0,0,0.5)"/></filter>
+          </defs>
+
+          <!-- ══ REGION 1: Tanger-Tétouan-Al Hoceïma (NW Med coast) ══ -->
+          <path id="r1" class="region-path" fill="url(#mg1)" filter="url(#mshadow)"
+            d="M 316,18 C 332,13 352,14 372,17 C 392,20 410,26 424,35 C 436,43 444,54 448,67
+               C 452,80 450,95 446,110 C 441,126 434,142 426,158 C 418,174 408,189 396,202
+               C 388,210 378,216 366,219 C 354,221 341,219 329,214 C 317,208 306,199 295,188
+               C 285,178 276,165 267,151 C 259,138 253,123 249,108 C 245,93 244,78 246,65
+               C 248,52 254,41 263,33 C 273,25 293,20 316,18 Z"
+            onclick="selectRegion('r1')" data-region="r1"/>
+          <!-- Products on region 1 -->
+          <text x="304" y="104" class="map-prod-icon">🌿</text>
+          <text x="324" y="90" class="map-prod-icon">🍵</text>
+          <text x="346" y="108" class="map-prod-icon">🫒</text>
+          <text x="305" y="124" class="region-label" text-anchor="middle">طنجة-تطوان</text>
+
+          <!-- ══ REGION 2: Oriental (NE) ══ -->
+          <path id="r2" class="region-path" fill="url(#mg2)" filter="url(#mshadow)"
+            d="M 396,202 C 408,189 418,174 426,158 C 434,142 441,126 446,110 C 450,95 452,80 448,67
+               C 452,72 456,80 459,90 C 462,102 464,116 464,130 C 464,146 461,162 457,177
+               C 452,194 445,210 436,224 C 427,237 416,249 404,259
+               C 396,265 386,269 376,270 C 366,271 355,268 344,261
+               C 333,254 322,243 312,229 C 303,216 296,201 291,185
+               C 295,188 306,199 316,208 C 328,217 341,221 354,221 C 366,220 378,215 388,208
+               C 393,205 395,203 396,202 Z"
+            onclick="selectRegion('r2')" data-region="r2"/>
+          <text x="428" y="165" class="map-prod-icon">🌾</text>
+          <text x="428" y="188" class="region-label" text-anchor="middle">الشرق</text>
+
+          <!-- ══ REGION 3: Fès-Meknès (N center) ══ -->
+          <path id="r3" class="region-path" fill="url(#mg3)" filter="url(#mshadow)"
+            d="M 291,185 C 296,201 303,216 312,229 C 322,243 333,254 344,261
+               C 355,268 366,271 376,270 C 366,271 355,275 344,281 C 333,287 322,295 312,305
+               C 302,315 293,327 284,340 C 276,352 268,365 260,377
+               C 252,368 244,358 237,347 C 230,336 224,323 219,310
+               C 215,297 212,283 211,269 C 210,255 211,241 215,228
+               C 219,215 226,203 235,194 C 244,185 256,179 268,175
+               C 276,172 283,172 291,175 L 291,185 Z"
+            onclick="selectRegion('r3')" data-region="r3"/>
+          <text x="252" y="238" class="map-prod-icon">🫒</text>
+          <text x="270" y="255" class="map-prod-icon">🍊</text>
+          <text x="252" y="270" class="region-label" text-anchor="middle">فاس-مكناس</text>
+
+          <!-- ══ REGION 4: Rabat-Salé-Kénitra (NW Atlantic) ══ -->
+          <path id="r4" class="region-path" fill="url(#mg4)" filter="url(#mshadow)"
+            d="M 249,108 C 244,78 246,65 250,55 C 254,45 260,38 268,34
+               C 262,38 255,44 248,52 C 240,61 234,72 229,85
+               C 224,98 220,113 218,128 C 216,143 216,158 218,173
+               C 220,185 224,197 229,207 C 234,217 240,226 247,233
+               C 250,237 253,240 257,243
+               C 249,240 241,234 235,225 C 227,215 221,202 216,188
+               C 212,175 209,161 208,147 C 207,133 208,119 211,107
+               C 214,95 220,84 228,76 C 236,68 245,63 253,62
+               L 249,108 Z"
+            onclick="selectRegion('r4')" data-region="r4"/>
+          <text x="224" y="160" class="map-prod-icon">🫒</text>
+          <text x="224" y="145" class="region-label" text-anchor="middle">الرباط-سلا</text>
+
+          <!-- ══ REGION 5: Béni Mellal-Khénifra (center) ══ -->
+          <path id="r5" class="region-path" fill="url(#mg5)" filter="url(#mshadow)"
+            d="M 211,269 C 212,283 215,297 219,310 C 224,323 230,336 237,347
+               C 244,358 252,368 260,377
+               C 265,383 269,388 274,393
+               C 268,396 261,398 254,399 C 246,400 238,399 230,397
+               C 222,394 214,389 207,383 C 200,376 193,368 187,358
+               C 182,349 177,338 173,327 C 170,317 168,305 168,293
+               C 168,280 170,267 174,255 C 179,243 185,232 193,223
+               C 200,215 208,209 217,206
+               C 214,215 212,227 211,240 L 211,269 Z"
+            onclick="selectRegion('r5')" data-region="r5"/>
+          <text x="208" y="335" class="map-prod-icon">🍯</text>
+          <text x="205" y="315" class="region-label" text-anchor="middle">بني ملال</text>
+
+          <!-- ══ REGION 6: Casablanca-Settat (W center) ══ -->
+          <path id="r6" class="region-path" fill="url(#mg6)" filter="url(#mshadow)"
+            d="M 208,147 C 208,119 211,107 215,95
+               C 218,83 223,74 229,67
+               C 229,76 227,86 226,96 C 224,107 223,118 222,130
+               C 221,143 220,156 220,169 C 220,181 221,193 223,205
+               C 225,215 229,225 233,233
+               C 224,228 215,220 208,211 C 201,201 196,189 193,176
+               C 190,163 189,150 190,137 C 191,127 194,118 199,110
+               C 203,103 207,99 212,97
+               L 208,147 Z"
+            onclick="selectRegion('r6')" data-region="r6"/>
+          <text x="198" y="192" class="map-prod-icon">🌾</text>
+          <text x="193" y="172" class="region-label" text-anchor="middle">الدار البيضاء</text>
+
+          <!-- ══ REGION 7: Marrakech-Safi (SW center) ══ -->
+          <path id="r7" class="region-path" fill="url(#mg7)" filter="url(#mshadow)"
+            d="M 168,293 C 168,305 170,317 173,327 C 177,338 182,349 187,358
+               C 193,368 200,376 207,383 C 214,389 222,394 230,397
+               C 220,400 210,402 200,402 C 190,402 180,399 170,394
+               C 160,389 150,382 141,373 C 132,364 124,353 117,341
+               C 111,330 107,317 104,304 C 102,291 101,278 103,265
+               C 105,253 109,241 115,231 C 121,221 129,213 138,207
+               C 146,202 155,199 165,199
+               C 158,206 152,215 148,226 C 145,236 143,247 143,258
+               C 143,270 146,281 150,292 C 155,302 162,309 168,313 L 168,293 Z"
+            onclick="selectRegion('r7')" data-region="r7"/>
+          <text x="144" y="310" class="map-prod-icon">🫒</text>
+          <text x="160" y="332" class="map-prod-icon">🌹</text>
+          <text x="140" y="358" class="region-label" text-anchor="middle">مراكش-آسفي</text>
+
+          <!-- ══ REGION 8: Drâa-Tafilalet (SE, large) ══ -->
+          <path id="r8" class="region-path" fill="url(#mg8)" filter="url(#mshadow)"
+            d="M 260,377 C 268,365 276,352 284,340 C 293,327 302,315 312,305
+               C 322,295 333,287 344,281 C 355,275 366,271 376,270
+               C 382,270 388,271 394,274
+               C 400,278 405,283 408,290 C 411,297 411,305 409,313
+               C 406,323 400,332 392,340 C 383,349 372,357 361,364
+               C 348,372 334,379 320,385 C 306,391 292,396 278,399
+               C 274,400 270,400 266,399
+               C 264,396 263,392 262,387 L 260,377 Z"
+            onclick="selectRegion('r8')" data-region="r8"/>
+          <text x="340" y="330" class="map-prod-icon">🌴</text>
+          <text x="360" y="310" class="map-prod-icon">🌹</text>
+          <text x="344" y="292" class="map-prod-icon">🌸</text>
+          <text x="344" y="362" class="region-label" text-anchor="middle">درعة-تافيلالت</text>
+
+          <!-- ══ REGION 9: Souss-Massa (SW Agadir) ══ -->
+          <path id="r9" class="region-path" fill="url(#mg9)" filter="url(#mshadow)"
+            d="M 103,265 C 101,278 102,291 104,304 C 107,317 111,330 117,341
+               C 124,353 132,364 141,373 C 150,382 160,389 170,394
+               C 165,397 159,399 153,400 C 146,401 139,400 132,397
+               C 124,394 116,389 108,382 C 100,375 93,366 87,355
+               C 82,345 77,333 74,321 C 72,309 71,296 72,284
+               C 73,272 76,260 81,250 C 86,240 93,231 101,224
+               C 108,218 115,214 123,212
+               C 118,220 114,230 111,241 C 108,251 106,258 105,265 L 103,265 Z"
+            onclick="selectRegion('r9')" data-region="r9"/>
+          <text x="94" y="305" class="map-prod-icon">🫙</text>
+          <text x="74" y="330" class="map-prod-icon">🥜</text>
+          <text x="84" y="360" class="region-label" text-anchor="middle">سوس-ماسة</text>
+
+          <!-- ══ REGION 10: Guelmim-Oued Noun (south) ══ -->
+          <path id="r10" class="region-path" fill="url(#mg10)" filter="url(#mshadow)"
+            d="M 72,284 C 71,296 72,309 74,321 C 77,333 82,345 87,355
+               C 93,366 100,375 108,382 C 116,389 124,394 132,397
+               C 126,400 119,402 112,402 C 104,402 96,400 88,396
+               C 80,392 72,385 65,376 C 58,367 52,356 47,344
+               C 43,333 40,321 39,308 C 38,295 39,282 42,270
+               C 45,259 50,248 57,239 C 63,231 70,225 79,221
+               C 85,217 92,215 99,215
+               C 94,221 89,228 86,237 C 82,247 80,258 79,269 L 72,284 Z"
+            onclick="selectRegion('r10')" data-region="r10"/>
+          <text x="66" y="358" class="map-prod-icon">🌵</text>
+          <text x="68" y="342" class="region-label" text-anchor="middle">كلميم</text>
+
+          <!-- ══ WESTERN SAHARA — Region 11: Laâyoune-Sakia El Hamra ══ -->
+          <path id="r11" class="sahara-path" fill="url(#mgs1)" filter="url(#mshadow)"
+            d="M 39,308 C 38,295 39,282 42,270 C 45,259 50,248 57,239
+               C 63,231 70,225 79,221 C 85,217 92,215 99,215
+               L 98,240 C 96,252 92,265 87,278 C 82,292 76,306 69,320
+               C 62,334 54,347 45,360 C 38,370 30,380 22,388
+               L 22,370 C 22,358 24,345 26,332 C 29,319 34,306 39,295 L 39,308 Z"
+            onclick="selectRegion('r11')" data-region="r11"/>
+          <text x="48" y="402" class="map-prod-icon">🏜️</text>
+          <text x="52" y="430" class="map-prod-icon">🌴</text>
+          <text x="42" y="390" class="region-label" text-anchor="middle" style="fill:rgba(255,220,100,.75)">لعيون</text>
+
+          <!-- ══ WESTERN SAHARA — Region 12: Dakhla-Oued Ed-Dahab ══ -->
+          <path id="r12" class="sahara-path" fill="url(#mgs2)" filter="url(#mshadow)"
+            d="M 22,388 C 30,380 38,370 45,360 C 54,347 62,334 69,320
+               C 76,306 82,292 87,278 C 92,265 96,252 98,240 L 99,215
+               L 100,235 C 101,252 101,270 100,288 C 98,307 95,326 90,344
+               C 85,363 79,382 72,400 C 65,418 57,436 48,453
+               C 40,469 31,485 22,500 C 16,511 10,522 6,534
+               L 6,516 C 6,502 7,488 8,474 C 10,459 12,444 14,429
+               C 17,413 20,398 22,384 L 22,388 Z"
+            onclick="selectRegion('r12')" data-region="r12"/>
+          <text x="35" y="490" class="map-prod-icon">🌊</text>
+          <text x="35" y="520" class="map-prod-icon">🧂</text>
+          <text x="38" y="470" class="region-label" text-anchor="middle" style="fill:rgba(255,220,100,.75)">الداخلة</text>
+
+          <!-- Lagouira bottom -->
+          <path class="sahara-path" fill="url(#mgs2)" opacity="0.6"
+            d="M 6,534 C 10,522 16,511 22,500 L 21,530 C 20,545 18,558 15,570
+               C 12,582 8,593 5,603 L 5,534 Z"/>
+
+          <!-- ══ BORDERS & COAST LINES ══ -->
+          <!-- Atlantic coast decorative line -->
+          <path d="M 6,60 C 8,55 10,52 12,50 C 14,48 16,47 18,47" fill="none" stroke="rgba(100,180,240,0.2)" stroke-width="1"/>
+
+          <!-- ══ CITY DOTS ══ -->
+          <!-- Rabat (capital) -->
+          <circle cx="211" cy="152" r="5" class="capital-dot"/>
+          <circle cx="211" cy="152" r="10" fill="none" stroke="rgba(240,200,80,.4)" stroke-width="1.5"/>
+          <text x="220" y="150" class="city-label" font-weight="800" style="fill:rgba(240,200,80,.95)">الرباط ★</text>
+
+          <!-- Casablanca -->
+          <circle cx="196" cy="172" r="3.5" class="city-dot"/>
+          <text x="205" y="175" class="city-label">الدار البيضاء</text>
+
+          <!-- Tangier -->
+          <circle cx="314" cy="24" r="3" class="city-dot"/>
+          <text x="314" y="20" class="city-label" text-anchor="middle">طنجة</text>
+
+          <!-- Fez -->
+          <circle cx="318" cy="180" r="3" class="city-dot"/>
+          <text x="327" y="180" class="city-label">فاس</text>
+
+          <!-- Marrakech -->
+          <circle cx="160" cy="310" r="3.5" class="city-dot"/>
+          <text x="169" y="312" class="city-label">مراكش</text>
+
+          <!-- Agadir -->
+          <circle cx="93" cy="332" r="4" class="city-dot" style="fill:#f0d060;stroke:#006233;"/>
+          <circle cx="93" cy="332" r="8" fill="none" stroke="rgba(90,170,90,.4)" stroke-width="1.2"/>
+          <text x="102" y="334" class="city-label" font-weight="800">أگادير</text>
+
+          <!-- Ouarzazate -->
+          <circle cx="270" cy="380" r="3" class="city-dot"/>
+          <text x="272" y="376" class="city-label">ورزازات</text>
+
+          <!-- Laayoune -->
+          <circle cx="44" cy="440" r="3" class="city-dot" style="fill:#f0d060"/>
+          <text x="52" y="440" class="city-label" style="fill:rgba(240,200,80,.8)">العيون</text>
+
+          <!-- Dakhla -->
+          <circle cx="20" cy="548" r="2.8" class="city-dot" style="fill:#f0d060"/>
+          <text x="28" y="546" class="city-label" style="fill:rgba(240,200,80,.75)">الداخلة</text>
+
+          <!-- ══ PRODUCT PINS (large, decorative) ══ -->
+          <!-- Argan oil zone - Souss -->
+          <g transform="translate(78,295)">
+            <circle r="14" fill="rgba(196,146,42,.15)" stroke="rgba(196,146,42,.3)" stroke-width="1"/>
+            <text x="0" y="5" text-anchor="middle" font-size="16">🫙</text>
+          </g>
+          <!-- Saffron - Taliouine (Souss-Massa) -->
+          <g transform="translate(114,330)">
+            <circle r="12" fill="rgba(196,146,42,.12)" stroke="rgba(196,146,42,.25)" stroke-width="1"/>
+            <text x="0" y="4" text-anchor="middle" font-size="14">🌸</text>
+          </g>
+          <!-- Rose - Ouarzazate -->
+          <g transform="translate(268,356)">
+            <circle r="13" fill="rgba(196,146,42,.12)" stroke="rgba(196,146,42,.25)" stroke-width="1"/>
+            <text x="0" y="4" text-anchor="middle" font-size="14">🌹</text>
+          </g>
+          <!-- Dates - Draa -->
+          <g transform="translate(330,400)">
+            <circle r="13" fill="rgba(196,146,42,.12)" stroke="rgba(196,146,42,.25)" stroke-width="1"/>
+            <text x="0" y="4" text-anchor="middle" font-size="14">🌴</text>
+          </g>
+          <!-- Honey - Ifrane/Fes-Meknes -->
+          <g transform="translate(252,280)">
+            <circle r="12" fill="rgba(196,146,42,.12)" stroke="rgba(196,146,42,.25)" stroke-width="1"/>
+            <text x="0" y="4" text-anchor="middle" font-size="14">🍯</text>
+          </g>
+          <!-- Herbs - Rif -->
+          <g transform="translate(310,100)">
+            <circle r="12" fill="rgba(45,107,45,.2)" stroke="rgba(90,170,90,.3)" stroke-width="1"/>
+            <text x="0" y="4" text-anchor="middle" font-size="14">🌿</text>
+          </g>
+          <!-- Olive - Marrakech -->
+          <g transform="translate(142,340)">
+            <circle r="12" fill="rgba(45,107,45,.18)" stroke="rgba(90,170,90,.28)" stroke-width="1"/>
+            <text x="0" y="4" text-anchor="middle" font-size="14">🫒</text>
+          </g>
+
+          <!-- ══ SEA LABELS ══ -->
+          <text x="28" y="230" font-family="Cairo,sans-serif" font-size="8.5" fill="rgba(100,200,240,.28)" text-anchor="middle" transform="rotate(-90,28,230)">المحيط الأطلسي</text>
+          <text x="290" y="11" font-family="Cairo,sans-serif" font-size="6.5" fill="rgba(100,200,240,.28)" text-anchor="middle">البحر الأبيض المتوسط</text>
+          <text x="46" y="602" font-family="Cairo,sans-serif" font-size="6.5" fill="rgba(255,255,255,.18)" text-anchor="middle">موريتانيا</text>
+          <text x="476" y="190" font-family="Cairo,sans-serif" font-size="6" fill="rgba(255,255,255,.15)" text-anchor="start" transform="rotate(90,476,190)">الجزائر</text>
+
+          <!-- Compass -->
+          <g transform="translate(490,44)">
+            <circle r="15" fill="rgba(0,0,0,.4)" stroke="rgba(196,146,42,.3)" stroke-width="1"/>
+            <polygon points="0,-13 2.5,-4 0,-6 -2.5,-4" fill="var(--red)" opacity=".9"/>
+            <polygon points="0,13 2.5,4 0,6 -2.5,4" fill="rgba(255,255,255,.5)"/>
+            <polygon points="-13,0 -4,-2.5 -6,0 -4,2.5" fill="rgba(255,255,255,.4)"/>
+            <polygon points="13,0 4,-2.5 6,0 4,2.5" fill="rgba(255,255,255,.4)"/>
+            <text y="-18" font-family="Cairo,sans-serif" font-size="8" fill="rgba(255,255,255,.7)" text-anchor="middle">ش</text>
+          </g>
+
+          <!-- Scale -->
+          <line x1="330" y1="598" x2="450" y2="598" stroke="rgba(255,255,255,.28)" stroke-width="1.5"/>
+          <line x1="330" y1="594" x2="330" y2="602" stroke="rgba(255,255,255,.28)" stroke-width="1.5"/>
+          <line x1="450" y1="594" x2="450" y2="602" stroke="rgba(255,255,255,.28)" stroke-width="1.5"/>
+          <text x="390" y="612" font-family="Cairo,sans-serif" font-size="7" fill="rgba(255,255,255,.28)" text-anchor="middle">≈ 500 كم</text>
+
+          <!-- Mini flag in Sahara -->
+          <rect x="30" y="490" width="28" height="19" rx="2" fill="#C1272D" opacity=".5"/>
+          <path d="M 44,492 L 46.2,498.8 L 53,498.8 L 47.4,502.5 L 49.6,509.3 L 44,505.6 L 38.4,509.3 L 40.6,502.5 L 35,498.8 L 41.8,498.8 Z"
+            fill="none" stroke="#006233" stroke-width="1" stroke-linejoin="miter" stroke-miterlimit="8"/>
+        </svg>
+      </div>
+
+      <!-- Region info panel -->
+      <div class="region-panel">
+        <div class="region-panel-default" id="rp-default">
+          <div class="rp-default-title">
+            <span class="ti-ar">🗺️ خريطة منتجات المغرب</span>
+            <span class="ti-fr">🗺️ Carte des produits du Maroc</span>
+            <span class="ti-en">🗺️ Morocco Products Map</span>
+            <span class="ti-es">🗺️ Mapa de productos de Marruecos</span>
+          </div>
+          <p class="rp-default-hint">
+            <span class="t-ar">انقر على أي جهة في الخريطة لاكتشاف منتجاتها الطبيعية الأصيلة.</span>
+            <span class="t-fr">Cliquez sur une région de la carte pour découvrir ses produits naturels authentiques.</span>
+            <span class="t-en">Click on any region on the map to discover its authentic natural products.</span>
+            <span class="t-es">Haz clic en cualquier región del mapa para descubrir sus productos naturales auténticos.</span>
+          </p>
+          <div class="region-list" id="regionList"></div>
+        </div>
+        <!-- Populated by JS -->
+        <div id="rp-detail"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-section reveal" id="why">
+  <div class="why-inner">
+    <div>
+      <div class="why-visual-box">
+        <span class="big">🇲🇦</span>
+        <p><span class="ti-ar">من قلب المغرب إلى العالم</span><span class="ti-fr">Du cœur du Maroc vers le monde</span><span class="ti-en">From Morocco's heart to the world</span><span class="ti-es">Del corazón de Marruecos al mundo</span></p>
+      </div>
+    </div>
+    <div>
+      <span class="section-eyebrow">Khouloud Bio</span>
+      <h2 class="section-title">
+        <span class="t-ar">الأصالة <span class="gold">ضماننا</span><br>الجودة <span class="green">هويتنا</span></span>
+        <span class="t-fr">L'authenticité notre <span class="gold">garantie</span><br>la qualité notre <span class="green">identité</span></span>
+        <span class="t-en">Authenticity our <span class="gold">guarantee</span><br>Quality our <span class="green">identity</span></span>
+        <span class="t-es">La autenticidad nuestra <span class="gold">garantía</span><br>la calidad nuestra <span class="green">identidad</span></span>
+      </h2>
+      <div class="why-points">
+        <div class="why-point"><div class="why-icon">🌾</div><div class="why-text"><strong><span class="ti-ar">مباشرة من المصدر</span><span class="ti-fr">Directement de la source</span><span class="ti-en">Direct from source</span><span class="ti-es">Directo de la fuente</span></strong><p><span class="t-ar">نتعامل مباشرة مع المزارعين المغاربة لضمان أعلى جودة وأفضل سعر.</span><span class="t-fr">Nous travaillons directement avec les agriculteurs marocains pour garantir la meilleure qualité.</span><span class="t-en">We work directly with Moroccan farmers to ensure the highest quality and best price.</span><span class="t-es">Trabajamos directamente con agricultores marroquíes para garantizar la mejor calidad.</span></p></div></div>
+        <div class="why-point"><div class="why-icon">🔬</div><div class="why-text"><strong><span class="ti-ar">فحص دقيق لكل منتج</span><span class="ti-fr">Contrôle qualité rigoureux</span><span class="ti-en">Rigorous quality control</span><span class="ti-es">Control de calidad riguroso</span></strong><p><span class="t-ar">كل دفعة تراقب وتفحص للتأكد من النقاء قبل الشحن.</span><span class="t-fr">Chaque lot est contrôlé pour garantir la pureté avant expédition.</span><span class="t-en">Every batch is tested to ensure purity before shipping.</span><span class="t-es">Cada lote es controlado para garantizar pureza antes del envío.</span></p></div></div>
+        <div class="why-point"><div class="why-icon">🌍</div><div class="why-text"><strong><span class="ti-ar">توصيل دولي آمن</span><span class="ti-fr">Livraison internationale sécurisée</span><span class="ti-en">Secure international delivery</span><span class="ti-es">Entrega internacional segura</span></strong><p><span class="t-ar">شحن مضمون إلى أوروبا، الخليج، وأمريكا الشمالية.</span><span class="t-fr">Livraison garantie vers l'Europe, le Golfe et l'Amérique du Nord.</span><span class="t-en">Guaranteed shipping to Europe, Gulf and North America.</span><span class="t-es">Envío garantizado a Europa, Golfo y América del Norte.</span></p></div></div>
+        <div class="why-point"><div class="why-icon">♻️</div><div class="why-text"><strong><span class="ti-ar">تغليف صديق للبيئة</span><span class="ti-fr">Emballage éco-responsable</span><span class="ti-en">Eco-friendly packaging</span><span class="ti-es">Envases ecológicos</span></strong><p><span class="t-ar">مواد تغليف قابلة لإعادة التدوير حرصاً على بيئة المغرب.</span><span class="t-fr">Matériaux recyclables par respect pour l'environnement marocain.</span><span class="t-en">Recyclable materials out of respect for Morocco's environment.</span><span class="t-es">Materiales reciclables por respeto al medioambiente marroquí.</span></p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HADITH -->
+<section class="hadith-section reveal">
+  <div class="hadith-hdr">
+    <span class="section-eyebrow" style="color:rgba(196,146,42,.65)"><span class="ti-ar">من هدي النبي ﷺ</span><span class="ti-fr">Du Prophète ﷺ</span><span class="ti-en">From the Prophet ﷺ</span><span class="ti-es">Del Profeta ﷺ</span></span>
+    <h2 class="section-title" style="color:white;font-family:Cormorant Garamond,serif">
+      <span class="t-ar">أحاديث في فضل <span class="gold">الأغذية الطبيعية</span></span>
+      <span class="t-fr">Hadiths sur la vertu des <span class="gold">aliments naturels</span></span>
+      <span class="t-en">Hadiths on the virtue of <span class="gold">natural foods</span></span>
+      <span class="t-es">Hadices sobre la virtud de los <span class="gold">alimentos naturales</span></span>
+    </h2>
+  </div>
+  <div class="hadith-grid">
+    <div class="hadith-card"><div class="hadith-icon">🫒</div><div class="hadith-txt"><span class="t-ar">«كُلُوا الزَّيْتَ وَادَّهِنُوا بِهِ، فَإِنَّهُ مِنْ شَجَرَةٍ مُبَارَكَةٍ»</span><span class="t-fr">«Mangez de l'huile d'olive et oignez-vous avec, car elle vient d'un arbre béni»</span><span class="t-en">«Eat olive oil and anoint with it, for it comes from a blessed tree»</span><span class="t-es">«Comed aceite de oliva y ungíos con él, pues proviene de un árbol bendito»</span></div><div class="hadith-src"><span class="ti-ar">رواه الترمذي — </span><span class="ti-fr">Tirmidhi — </span><span class="ti-en">Tirmidhi — </span><span class="ti-es">Tirmidhi — </span><span>✓</span></div></div>
+    <div class="hadith-card"><div class="hadith-icon">🍯</div><div class="hadith-txt"><span class="t-ar">«إن كان شيء من أدويتكم خير ففي شرطة محجم أو شربة عسلٌ»</span><span class="t-fr">«Si parmi vos remèdes l'un est bénéfique, c'est une incision ou une gorgée de miel»</span><span class="t-en">«If anything among your remedies is beneficial, it is a cupping or a drink of honey»</span><span class="t-es">«Si algo entre vuestros remedios es beneficioso, es una ventosa o un sorbo de miel»</span></div><div class="hadith-src"><span class="ti-ar">رواه جابر — </span><span class="ti-fr">Jabir — </span><span class="ti-en">Jabir — </span><span class="ti-es">Jabir — </span><span>✓</span></div></div>
+    <div class="hadith-card"><div class="hadith-icon">🌴</div><div class="hadith-txt"><span class="t-ar">«مَن تَصَبَّحَ بسَبْعِ تَمَراتٍ عَجْوَةً، لَمْ يَضُرَّهُ ذلكَ اليومَ سُمٌّ وَلا سِحْرٌ»</span><span class="t-fr">«Quiconque mange sept dattes Ajwa le matin, ni poison ni magie ne lui nuiront»</span><span class="t-en">«Whoever eats seven Ajwa dates in the morning, neither poison nor magic will harm him»</span><span class="t-es">«Quien coma siete dátiles Ajwa por la mañana, ni veneno ni magia le dañarán»</span></div><div class="hadith-src"><span class="ti-ar">رواه البخاري — </span><span class="ti-fr">Bukhari — </span><span class="ti-en">Bukhari — </span><span class="ti-es">Bujari — </span><span>✓</span></div></div>
+  </div>
+  <div class="ayah-box">
+    <div class="ayah-hdr"><span class="ayah-hdr-icon">📖</span><div><div class="ayah-hdr-ttl"><span class="ti-ar">قال الله تعالى في سورة النحل</span><span class="ti-fr">Allah dit dans la sourate An-Nahl</span><span class="ti-en">Allah says in Surah An-Nahl</span><span class="ti-es">Allah dice en la Sura An-Nahl</span></div><div class="ayah-hdr-sub">68-69</div></div></div>
+    <div class="ayah-txt">
+      <span class="t-ar">﴿ وَأَوْحَىٰ رَبُّكَ إِلَى النَّحْلِ أَنِ اتَّخِذِي مِنَ الْجِبَالِ بُيُوتًا وَمِنَ الشَّجَرِ وَمِمَّا يَعْرِشُونَ ﴿٦٨﴾ ثُمَّ كُلِي مِن كُلِّ الثَّمَرَاتِ فَاسْلُكِي سُبُلَ رَبِّكِ ذُلُلًا ۚ يَخْرُجُ مِن بُطُونِهَا شَرَابٌ مُّخْتَلِفٌ أَلْوَانُهُ فِيهِ شِفَاءٌ لِّلنَّاسِ ۗ إِنَّ فِي ذَٰلِكَ لَآيَةً لِّقَوْمٍ يَتَفَكَّرُونَ ﴿٦٩﴾ ﴾</span>
+      <span class="t-fr">﴿ Ton Seigneur a révélé à l'abeille: «Prends des maisons dans les montagnes et les arbres.» De leurs ventres sort une boisson aux couleurs variées, qui est une guérison pour les hommes. ﴾</span>
+      <span class="t-en">﴿ Your Lord inspired the bee: «Take up residences in mountains and trees.» From their bellies comes a drink of varying colors in which there is healing for people. ﴾</span>
+      <span class="t-es">﴿ Tu Señor inspiró a la abeja: «Toma habitaciones en las montañas y los árboles.» De sus vientres sale una bebida de colores variados en la que hay curación para la gente. ﴾</span>
+    </div>
+    <div class="ayah-ref">An-Nahl 68-69</div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>
+    <span class="t-ar">جرّب أصالة <span style="color:var(--gold3)">المغرب</span> في بيتك</span>
+    <span class="t-fr">Découvrez l'authenticité du <span style="color:var(--gold3)">Maroc</span> chez vous</span>
+    <span class="t-en">Experience <span style="color:var(--gold3)">Morocco's</span> authenticity at home</span>
+    <span class="t-es">Experimenta la autenticidad de <span style="color:var(--gold3)">Marruecos</span> en casa</span>
+  </h2>
+  <p>
+    <span class="t-ar">اطلب الآن عبر واتساب — التوصيل على عاتق المشتري 🚚</span>
+    <span class="t-fr">Commandez maintenant via WhatsApp — Frais de livraison à la charge de l'acheteur 🚚</span>
+    <span class="t-en">Order now via WhatsApp — Shipping costs are at the buyer's expense 🚚</span>
+    <span class="t-es">Pide ahora vía WhatsApp — Los gastos de envío corren a cargo del comprador 🚚</span>
+  </p>
+  <div class="cta-btns">
+    <a href="#products" class="btn-gold">
+      <span class="ti-ar">🌿 تسوّق الآن</span><span class="ti-fr">🌿 Acheter maintenant</span><span class="ti-en">🌿 Shop now</span><span class="ti-es">🌿 Comprar ahora</span>
+    </a>
+    <a href="https://wa.me/212638733257" target="_blank" class="btn-outline-w">
+      💬 WhatsApp — +212 638 733 257
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-panels">
+    <!-- Official Flag -->
+    <div class="footer-flag-panel">
+      <div class="footer-panel-ttl">
+        <span class="ti-ar">🇲🇦 الراية الرسمية — ظهير 17 نونبر 1915</span>
+        <span class="ti-fr">🇲🇦 Drapeau officiel — Dahir 17 novembre 1915</span>
+        <span class="ti-en">🇲🇦 Official Flag — Dahir November 17, 1915</span>
+        <span class="ti-es">🇲🇦 Bandera oficial — Dahir 17 noviembre 1915</span>
+      </div>
+      <div class="flag-display">
+        <div class="flag-with-pole">
+          <div class="fpole"></div>
+          <div class="fcanvas">
+            <svg viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:100%">
+              <rect width="900" height="600" fill="#C1272D"/>
+              <path d="M 450,150 L 538.211,421.353 L 307.295,253.647 L 592.705,253.647 L 361.789,421.353 Z"
+                fill="none" stroke="#006233" stroke-width="45" stroke-linejoin="miter" stroke-miterlimit="8"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="flag-spec-grid">
+        <div class="flag-spec"><div class="fsl"><span class="ti-ar">الأحمر</span><span class="ti-fr">Rouge</span><span class="ti-en">Red</span><span class="ti-es">Rojo</span></div><div class="fsv"><span class="sw" style="background:#C1272D"></span>#C1272D</div></div>
+        <div class="flag-spec"><div class="fsl"><span class="ti-ar">الأخضر</span><span class="ti-fr">Vert</span><span class="ti-en">Green</span><span class="ti-es">Verde</span></div><div class="fsv"><span class="sw" style="background:#006233"></span>#006233</div></div>
+        <div class="flag-spec"><div class="fsl"><span class="ti-ar">النسبة</span><span class="ti-fr">Ratio</span><span class="ti-en">Ratio</span><span class="ti-es">Ratio</span></div><div class="fsv">2 : 3</div></div>
+        <div class="flag-spec"><div class="fsl"><span class="ti-ar">نصف القطر</span><span class="ti-fr">Rayon</span><span class="ti-en">Radius</span><span class="ti-es">Radio</span></div><div class="fsv">R = L/6</div></div>
+      </div>
+    </div>
+    <!-- Map -->
+    <div class="footer-map-panel">
+      <div class="footer-panel-ttl">
+        <span class="ti-ar">🗺️ خريطة المملكة المغربية الكاملة</span>
+        <span class="ti-fr">🗺️ Carte complète du Royaume du Maroc</span>
+        <span class="ti-en">🗺️ Complete Map of the Kingdom of Morocco</span>
+        <span class="ti-es">🗺️ Mapa completo del Reino de Marruecos</span>
+      </div>
+      <div class="footer-map-img">
+        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/4QC8RXhpZgAASUkqAAgAAAAGABIBAwABAAAAAQAAABoBBQABAAAAVgAAABsBBQABAAAAXgAAACgBAwABAAAAAgAAABMCAwABAAAAAQAAAGmHBAABAAAAZgAAAAAAAABgAAAAAQAAAGAAAAABAAAABgAAkAcABAAAADAyMTABkQcABAAAAAECAwAAoAcABAAAADAxMDABoAMAAQAAAP//AAACoAMAAQAAAMUBAAADoAMAAQAAAPQBAAAAAAAA/+EOZWh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8APD94cGFja2V0IGJlZ2luPSfvu78nIGlkPSdXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQnPz4KPHg6eG1wbWV0YSB4bWxuczp4PSdhZG9iZTpuczptZXRhLyc+CjxyZGY6UkRGIHhtbG5zOnJkZj0naHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyc+CgogPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9JycKICB4bWxuczpBdHRyaWI9J2h0dHA6Ly9ucy5hdHRyaWJ1dGlvbi5jb20vYWRzLzEuMC8nPgogIDxBdHRyaWI6QWRzPgogICA8cmRmOlNlcT4KICAgIDxyZGY6bGkgcmRmOnBhcnNlVHlwZT0nUmVzb3VyY2UnPgogICAgIDxBdHRyaWI6Q3JlYXRlZD4yMDI1LTAyLTEyPC9BdHRyaWI6Q3JlYXRlZD4KICAgICA8QXR0cmliOkV4dElkPjVhMTUxNDIyLWM1M2MtNDAwNS1iODFkLTU0M2E2ZTdkZjM2YTwvQXR0cmliOkV4dElkPgogICAgIDxBdHRyaWI6RmJJZD41MjUyNjU5MTQxNzk1ODA8L0F0dHJpYjpGYklkPgogICAgIDxBdHRyaWI6VG91Y2hUeXBlPjI8L0F0dHJpYjpUb3VjaFR5cGU+CiAgICA8L3JkZjpsaT4KICAgPC9yZGY6U2VxPgogIDwvQXR0cmliOkFkcz4KIDwvcmRmOkRlc2NyaXB0aW9uPgoKIDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PScnCiAgeG1sbnM6ZGM9J2h0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvJz4KICA8ZGM6dGl0bGU+CiAgIDxyZGY6QWx0PgogICAgPHJkZjpsaSB4bWw6bGFuZz0neC1kZWZhdWx0Jz5HZW9ncmFwaGljYWwgSW1wb3J0YW5jZSBvZiBNYXJyYWtlc2ggb24gYSBNYXAgb2YgTW9yb2NjbyAtIDE8L3JkZjpsaT4KICAgPC9yZGY6QWx0PgogIDwvZGM6dGl0bGU+CiA8L3JkZjpEZXNjcmlwdGlvbj4KCiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0nJwogIHhtbG5zOnBkZj0naHR0cDovL25zLmFkb2JlLmNvbS9wZGYvMS4zLyc+CiAgPHBkZjpBdXRob3I+UmF6YWFsaTQ4MzgyPC9wZGY6QXV0aG9yPgogPC9yZGY6RGVzY3JpcHRpb24+CgogPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9JycKICB4bWxuczp4bXA9J2h0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8nPgogIDx4bXA6Q3JlYXRvclRvb2w+Q2FudmEgKFJlbmRlcmVyKSBkb2M9REFHZTZQcUNfZWMgdXNlcj1VQUdhd2VpdTdVNCBicmFuZD1CQUdhd2V1ajgxNCB0ZW1wbGF0ZT08L3htcDpDcmVhdG9yVG9vbD4KIDwvcmRmOkRlc2NyaXB0aW9uPgo8L3JkZjpSREY+CjwveDp4bXBtZXRhPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAo8P3hwYWNrZXQgZW5kPSd3Jz8+/9sAQwAQCwwODAoQDg0OEhEQExgoGhgWFhgxIyUdKDozPTw5Mzg3QEhcTkBEV0U3OFBtUVdfYmdoZz5NcXlwZHhcZWdj/9sAQwEREhIYFRgvGhovY0I4QmNjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2Nj/8AAEQgB9AHFAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/aAAwDAQACEQMRAD8A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" alt="Morocco Map" loading="lazy"/>
+        <div class="footer-map-cap">
+          <strong>المملكة المغربية · Royaume du Maroc</strong>
+          <small><span class="ti-ar">شاملة الصحراء المغربية</span><span class="ti-fr">Sahara marocain inclus</span><span class="ti-en">Incl. Moroccan Sahara</span><span class="ti-es">Incl. Sahara marroquí</span></small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-logo">Khouloud Bio<small><span class="ti-ar">المنتجات الطبيعية المغربية</span><span class="ti-fr">Produits Naturels Marocains</span><span class="ti-en">Moroccan Natural Products</span><span class="ti-es">Productos Naturales Marroquíes</span></small></div>
+    <ul class="footer-links">
+      <li><a href="#products"><span class="ti-ar">منتجاتنا</span><span class="ti-fr">Produits</span><span class="ti-en">Products</span><span class="ti-es">Productos</span></a></li>
+      <li><a href="#map-section"><span class="ti-ar">الخريطة</span><span class="ti-fr">Carte</span><span class="ti-en">Map</span><span class="ti-es">Mapa</span></a></li>
+      <li><a href="https://wa.me/212638733257" target="_blank">WhatsApp</a></li>
+    </ul>
+    <div class="footer-copy">© 2026 Khouloud Bio 🇲🇦</div>
+  </div>
+</footer>
+
+<script>
+// ══════════════════════════════════════════
+// REGION DATA — Products by region (4 langs)
+// ══════════════════════════════════════════
+const REGIONS = {
+  r1:{
+    icon:"🌿",color:"#2d7a2d",
+    name:{ar:"طنجة-تطوان-الحسيمة",fr:"Tanger-Tétouan-Al Hoceïma",en:"Tangier-Tetouan-Al Hoceima",es:"Tánger-Tetuán-Al Hoceima"},
+    sub:{ar:"شمال المغرب",fr:"Nord du Maroc",en:"Northern Morocco",es:"Norte de Marruecos"},
+    desc:{ar:"بوابة المغرب على المتوسط — تشتهر بأعشابها العطرية، زيت الزيتون، وإنتاج الريف الفاخر من الشيح والزعتر.",fr:"Porte du Maroc sur la Méditerranée — célèbre pour ses herbes aromatiques, l'huile d'olive et les plantes médicinales du Rif.",en:"Morocco's gateway to the Mediterranean — renowned for aromatic herbs, olive oil and the Rif's medicinal plants.",es:"Puerta de Marruecos al Mediterráneo — famosa por hierbas aromáticas, aceite de oliva y plantas medicinales del Rif."},
+    products:[{icon:"🌿",ar:"الأعشاب العطرية"},{icon:"🫒",ar:"زيت الزيتون"},{icon:"🍃",ar:"الشيح والزعتر"},{icon:"🌾",ar:"نباتات الريف"}]
+  },
+  r2:{
+    icon:"🌾",color:"#267026",
+    name:{ar:"جهة الشرق",fr:"Région de l'Oriental",en:"Oriental Region",es:"Región Oriental"},
+    sub:{ar:"شرق المغرب",fr:"Est du Maroc",en:"Eastern Morocco",es:"Este de Marruecos"},
+    desc:{ar:"أرض المنسوجات والزيتون وحبوب الجنوب — جهة غنية بالتراث والطبيعة على الحدود الجزائرية.",fr:"Terre de textiles, d'olives et de céréales du sud — région riche en patrimoine et nature à la frontière algérienne.",en:"Land of textiles, olives and southern grains — rich in heritage and nature on the Algerian border.",es:"Tierra de textiles, aceitunas y cereales del sur — rica en patrimonio y naturaleza en la frontera argelina."},
+    products:[{icon:"🫒",ar:"زيت الزيتون"},{icon:"🌾",ar:"الحبوب"},{icon:"🍯",ar:"عسل البرية"}]
+  },
+  r3:{
+    icon:"🍊",color:"#2e7a2e",
+    name:{ar:"فاس-مكناس",fr:"Fès-Meknès",en:"Fès-Meknès",es:"Fez-Meknes"},
+    sub:{ar:"قلب المغرب الإمبراطوري",fr:"Cœur du Maroc impérial",en:"Heart of Imperial Morocco",es:"Corazón del Marruecos imperial"},
+    desc:{ar:"عاصمة الثقافة والعلم — تنتج زيت الزيتون الفاخر، العسل، والمنتجات العضوية التقليدية من سهل سايس.",fr:"Capitale de la culture et du savoir — produit de l'huile d'olive de luxe, du miel et des produits biologiques de la plaine de Saïss.",en:"Capital of culture and knowledge — produces premium olive oil, honey and organic products from the Saïss plain.",es:"Capital de la cultura y el saber — produce aceite de oliva de lujo, miel y productos ecológicos de la llanura de Saïss."},
+    products:[{icon:"🫒",ar:"زيت الزيتون"},{icon:"🍯",ar:"عسل إفران"},{icon:"🌿",ar:"الأعشاب"},{icon:"🍊",ar:"الحمضيات"}]
+  },
+  r4:{
+    icon:"🌊",color:"#286828",
+    name:{ar:"الرباط-سلا-القنيطرة",fr:"Rabat-Salé-Kénitra",en:"Rabat-Salé-Kénitra",es:"Rabat-Salé-Kenitra"},
+    sub:{ar:"العاصمة الأطلسية",fr:"La capitale atlantique",en:"The Atlantic Capital",es:"La capital atlántica"},
+    desc:{ar:"جهة العاصمة الملكية — تنتج زيت الزيتون، الحمضيات، والخضروات المنزرعة على ضفاف أبي رقراق.",fr:"Région de la capitale royale — produit huile d'olive, agrumes et légumes cultivés sur les rives du Bouregreg.",en:"Region of the royal capital — produces olive oil, citrus and vegetables grown along the Bouregreg river.",es:"Región de la capital real — produce aceite de oliva, cítricos y verduras cultivadas a orillas del Bou Regreg."},
+    products:[{icon:"🫒",ar:"زيت الزيتون"},{icon:"🍊",ar:"الحمضيات"},{icon:"🥕",ar:"الخضروات"}]
+  },
+  r5:{
+    icon:"🍯",color:"#327830",
+    name:{ar:"بني ملال-خنيفرة",fr:"Béni Mellal-Khénifra",en:"Béni Mellal-Khénifra",es:"Béni Mellal-Khénifra"},
+    sub:{ar:"قلب الأطلس الأوسط",fr:"Cœur du Moyen Atlas",en:"Heart of the Middle Atlas",es:"Corazón del Atlas Medio"},
+    desc:{ar:"عالم العسل الجبلي والغابات العظيمة — عسل الأطلس الأوسط من أفخر أنواع العسل المغربي، ينتج في بيئة نقية بعيدة عن التلوث.",fr:"Monde du miel de montagne et des grandes forêts — le miel du Moyen Atlas parmi les plus précieux du Maroc, produit dans un environnement pur.",en:"World of mountain honey and great forests — Middle Atlas honey among Morocco's finest, produced in a pure environment.",es:"Mundo de la miel de montaña y los grandes bosques — miel del Atlas Medio entre los más preciosos de Marruecos."},
+    products:[{icon:"🍯",ar:"عسل الجبال"},{icon:"🌿",ar:"أعشاب الأطلس"},{icon:"🫐",ar:"ثمار البرية"}]
+  },
+  r6:{
+    icon:"🏙️",color:"#246224",
+    name:{ar:"الدار البيضاء-سطات",fr:"Casablanca-Settat",en:"Casablanca-Settat",es:"Casablanca-Settat"},
+    sub:{ar:"القطب الاقتصادي",fr:"Le pôle économique",en:"The economic hub",es:"El polo económico"},
+    desc:{ar:"قلب المغرب الاقتصادي — يتميز بإنتاج زيت الزيتون وحبوب السهل الأطلسي الخصيب.",fr:"Cœur économique du Maroc — se distingue par la production d'huile d'olive et les céréales de la fertile plaine atlantique.",en:"Morocco's economic heart — distinguished by olive oil production and grains from the fertile Atlantic plain.",es:"Corazón económico de Marruecos — distinguido por aceite de oliva y cereales de la fértil llanura atlántica."},
+    products:[{icon:"🫒",ar:"زيت الزيتون"},{icon:"🌾",ar:"الحبوب"},{icon:"🥛",ar:"منتجات الألبان"}]
+  },
+  r7:{
+    icon:"🌹",color:"#307a2c",
+    name:{ar:"مراكش-آسفي",fr:"Marrakech-Safi",en:"Marrakech-Safi",es:"Marrakech-Safi"},
+    sub:{ar:"المدينة الحمراء والسواحل",fr:"La ville rouge et les côtes",en:"The Red City and the coasts",es:"La ciudad roja y las costas"},
+    desc:{ar:"أرض زيت الزيتون الأرغاني والورود — مراكش تنتج أجود زيت الزيتون وجزء من أرض الأركان، مع إنتاج ورود آسفي الشهيرة.",fr:"Terre de l'olivier et de l'arganier — Marrakech produit un excellent huile d'olive, des roses et certains des meilleurs arganes.",en:"Land of olive and argan trees — Marrakech produces excellent olive oil, roses and some of the finest argan.",es:"Tierra del olivo y el argán — Marrakech produce excelente aceite de oliva, rosas y algunos de los mejores arganes."},
+    products:[{icon:"🫒",ar:"زيت الزيتون"},{icon:"🌹",ar:"الورود"},{icon:"🫙",ar:"زيت الأركان"},{icon:"🍊",ar:"الحمضيات"}]
+  },
+  r8:{
+    icon:"🌴",color:"#2c722a",
+    name:{ar:"درعة-تافيلالت",fr:"Drâa-Tafilalet",en:"Drâa-Tafilalet",es:"Drâa-Tafilalet"},
+    sub:{ar:"واحات الصحراء والأطلس",fr:"Oasis du Sahara et Atlas",en:"Sahara oases and Atlas",es:"Oasis del Sahara y Atlas"},
+    desc:{ar:"قلب المغرب الأعمق — مهد التمور المجهول الفاخرة، الورود الدمشقية من دادس، والزعفران الملكي من تيليوين.",fr:"Cœur profond du Maroc — berceau des dattes Medjool de luxe, des roses damascènes du Dadès et du safran royal de Taliouine.",en:"Morocco's deepest heart — birthplace of luxury Medjool dates, Dadès damascene roses and royal saffron from Taliouine.",es:"Corazón profundo de Marruecos — cuna de los dátiles Medjool de lujo, las rosas damascenas del Dadés y el azafrán real de Taliouine."},
+    products:[{icon:"🌴",ar:"تمور مجهول"},{icon:"🌹",ar:"ورد دمشقي"},{icon:"🌸",ar:"زعفران تيليوين"},{icon:"🏔️",ar:"أعشاب الأطلس"}]
+  },
+  r9:{
+    icon:"🫙",color:"#267228",
+    name:{ar:"سوس-ماسة",fr:"Souss-Massa",en:"Souss-Massa",es:"Souss-Massa"},
+    sub:{ar:"عاصمة الأركان",fr:"Capitale de l'Argan",en:"Argan Capital",es:"Capital del Argán"},
+    desc:{ar:"قلب إمبراطورية الأركان — أگادير وجبال الأطلس الصغير تحتضن شجرة الأركان المتوطنة في المغرب والمسجلة في التراث العالمي لليونسكو. هنا يُصنع الأملو التقليدي.",fr:"Cœur de l'empire de l'argan — Agadir et le Petit Atlas abritent l'arganier endémique au Maroc, inscrit au patrimoine mondial de l'UNESCO. L'amlou traditionnel y est préparé.",en:"Heart of the argan empire — Agadir and the Anti-Atlas harbor the argan tree endemic to Morocco, listed in UNESCO's world heritage. Traditional amlou is made here.",es:"Corazón del imperio del argán — Agadir y el Anti-Atlas albergan el árbol de argán endémico de Marruecos, inscrito en el patrimonio mundial de la UNESCO. El amlou tradicional se hace aquí."},
+    products:[{icon:"🫙",ar:"زيت الأركان"},{icon:"🥜",ar:"أملو اللوز"},{icon:"🌸",ar:"زعفران تيليوين"},{icon:"🍊",ar:"حمضيات أگادير"}]
+  },
+  r10:{
+    icon:"🌵",color:"#286828",
+    name:{ar:"كلميم-واد نون",fr:"Guelmim-Oued Noun",en:"Guelmim-Oued Noun",es:"Guelmim-Oued Noun"},
+    sub:{ar:"بوابة الصحراء",fr:"Porte du Sahara",en:"Gateway to the Sahara",es:"Puerta del Sahara"},
+    desc:{ar:"المنطقة الانتقالية بين سوس والصحراء — تشتهر بنخيلها وعسل البرية والأعشاب الصحراوية النادرة.",fr:"Zone de transition entre le Souss et le Sahara — connue pour ses palmiers, son miel sauvage et ses plantes sahariennes rares.",en:"Transition zone between the Souss and Sahara — known for its palms, wild honey and rare desert plants.",es:"Zona de transición entre el Souss y el Sahara — conocida por sus palmeras, miel silvestre y plantas desérticas raras."},
+    products:[{icon:"🌴",ar:"نخيل وتمور"},{icon:"🍯",ar:"عسل البرية"},{icon:"🌿",ar:"أعشاب صحراوية"}]
+  },
+  r11:{
+    icon:"🏜️",color:"#c8a040",
+    name:{ar:"لعيون-الساقية الحمراء",fr:"Laâyoune-Sakia El Hamra",en:"Laâyoune-Sakia El Hamra",es:"El Aaiún-Saguia el Hamra"},
+    sub:{ar:"الصحراء المغربية الشمالية",fr:"Sahara marocain nord",en:"Northern Moroccan Sahara",es:"Sahara marroquí norte"},
+    desc:{ar:"الجهة 11 من المملكة المغربية — العيون عاصمتها، أرض الملح الأطلسي والتمور والثروة السمكية والسياحة الصحراوية.",fr:"La 11e région du Royaume du Maroc — Laâyoune sa capitale, terre de sel atlantique, dattes, richesse halieutique et tourisme saharien.",en:"The 11th region of the Kingdom of Morocco — Laayoune its capital, land of Atlantic salt, dates, fish wealth and Saharan tourism.",es:"La 11ª región del Reino de Marruecos — El Aaiún su capital, tierra de sal atlántica, dátiles, riqueza pesquera y turismo sahariano."},
+    products:[{icon:"🧂",ar:"الملح الأطلسي"},{icon:"🌴",ar:"تمور صحراوية"},{icon:"🐟",ar:"الثروة السمكية"},{icon:"🏜️",ar:"سياحة صحراوية"}]
+  },
+  r12:{
+    icon:"🌊",color:"#b89038",
+    name:{ar:"الداخلة-وادي الذهب",fr:"Dakhla-Oued Ed-Dahab",en:"Dakhla-Oued Ed-Dahab",es:"Dakhla-Wadi Ed-Dahab"},
+    sub:{ar:"الصحراء المغربية الجنوبية",fr:"Sahara marocain sud",en:"Southern Moroccan Sahara",es:"Sahara marroquí sur"},
+    desc:{ar:"جوهرة الجنوب — الداخلة خليج ساحر بمياه فيروزية، مشهورة بالأسماك الطازجة الرائعة والملح البحري والسياحة الرياضية.",fr:"Joyau du sud — Dakhla, une baie enchanteresse aux eaux turquoise, célèbre pour ses poissons frais, son sel marin et son tourisme sportif.",en:"Jewel of the south — Dakhla, an enchanting bay with turquoise waters, famous for fresh fish, sea salt and sports tourism.",es:"Joya del sur — Dakhla, una bahía encantadora con aguas turquesas, famosa por el pescado fresco, la sal marina y el turismo deportivo."},
+    products:[{icon:"🐟",ar:"أسماك طازجة"},{icon:"🧂",ar:"الملح البحري"},{icon:"🌊",ar:"الرياضات البحرية"},{icon:"🌴",ar:"واحات النخيل"}]
+  }
+};
+
+// ══ LANGUAGE SWITCHER ══
+const html = document.documentElement;
+const lbs = document.querySelectorAll(".lb");
+
+function setLang(l){
+  html.setAttribute("data-lang",l);
+  html.setAttribute("lang",l);
+  html.setAttribute("dir",l==="ar"?"rtl":"ltr");
+  lbs.forEach(b=>b.classList.toggle("active",b.dataset.l===l));
+  localStorage.setItem("kb-lang",l);
+  renderRegionList();
+}
+lbs.forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.l)));
+
+// ══ REGION INTERACTION ══
+let currentRegion = null;
+
+function selectRegion(id){
+  const lang = html.getAttribute("data-lang")||"ar";
+  const r = REGIONS[id];
+  if(!r) return;
+
+  // Deselect previous
+  if(currentRegion){
+    document.getElementById(currentRegion)?.classList.remove("selected");
+    document.querySelectorAll(".region-list-item").forEach(el=>el.classList.remove("active"));
+  }
+  currentRegion = id;
+  document.getElementById(id)?.classList.add("selected");
+  document.querySelectorAll(`[data-rid="${id}"]`).forEach(el=>el.classList.add("active"));
+
+  // Show detail panel
+  document.getElementById("rp-default").style.display = "none";
+  const detail = document.getElementById("rp-detail");
+  detail.innerHTML = `
+    <div class="region-info-box active">
+      <span class="rp-icon">${r.icon}</span>
+      <div class="rp-name">${r.name[lang]}</div>
+      <div class="rp-sub">${r.sub[lang]}</div>
+      <p class="rp-desc">${r.desc[lang]}</p>
+      <div class="rp-products">
+        ${r.products.map(p=>`<span class="rp-product">${p.icon} ${p.ar}</span>`).join("")}
+      </div>
+      <div style="margin-top:1rem">
+        <button onclick="resetPanel()" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.55);padding:.3rem .7rem;border-radius:8px;font-family:Cairo,sans-serif;font-size:.68rem;cursor:pointer;margin-top:.5rem;">
+          ${lang==="ar"?"↩ رجوع":lang==="fr"?"↩ Retour":lang==="es"?"↩ Volver":"↩ Back"}
+        </button>
+      </div>
+    </div>`;
+}
+
+function resetPanel(){
+  currentRegion = null;
+  document.querySelectorAll(".region-path,.sahara-path").forEach(el=>el.classList.remove("selected"));
+  document.getElementById("rp-default").style.display = "block";
+  document.getElementById("rp-detail").innerHTML = "";
+}
+
+function renderRegionList(){
+  const lang = html.getAttribute("data-lang")||"ar";
+  const list = document.getElementById("regionList");
+  if(!list) return;
+  list.innerHTML = Object.entries(REGIONS).map(([id,r])=>`
+    <div class="region-list-item" data-rid="${id}" onclick="selectRegion('${id}')">
+      <span class="rli-dot" style="background:${r.color}"></span>
+      <div>
+        <div class="rli-name">${r.name[lang]}</div>
+        <div class="rli-prod">${r.products.map(p=>p.icon).join(" ")}</div>
+      </div>
+    </div>`).join("");
+}
+
+// ══ MOBILE NAV ══
+const toggle = document.getElementById("navToggle");
+const mobileNav = document.getElementById("navMobile");
+toggle.addEventListener("click",()=>mobileNav.classList.toggle("open"));
+function closeNav(){mobileNav.classList.remove("open");}
+document.addEventListener("click",e=>{
+  if(!toggle.contains(e.target)&&!mobileNav.contains(e.target))
+    mobileNav.classList.remove("open");
+});
+
+// ══ SCROLL REVEAL ══
+const obs = new IntersectionObserver(
+  entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("visible");}),
+  {threshold:.07}
+);
+document.querySelectorAll(".reveal").forEach(r=>obs.observe(r));
+
+// ══ SMOOTH SCROLL ══
+document.querySelectorAll("a[href^='#']").forEach(a=>{
+  a.addEventListener("click",e=>{
+    const t=document.querySelector(a.getAttribute("href"));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:"smooth"});}
+  });
+});
+
+// ══ PRODUCT ORDER ══
+const PNAMES = {
+  ar:["زيت الأركان","زيت الزيتون البكر","العسل المغربي","الأعشاب الطبية","تمور مجهول","ماء الورد","أملو اللوز","زعفران تاليوين"],
+  fr:["Huile d'Argan","Huile d'Olive Vierge","Miel Marocain","Herbes Médicinales","Dattes Medjool","Eau de Rose","Amlou aux Amandes","Safran de Taliouine"],
+  en:["Argan Oil","Extra Virgin Olive Oil","Moroccan Honey","Medicinal Herbs","Medjool Dates","Rose Water","Almond Amlou","Taliouine Saffron"],
+  es:["Aceite de Argán","Aceite de Oliva Virgen","Miel Marroquí","Hierbas Medicinales","Dátiles Medjool","Agua de Rosa","Amlou de Almendras","Azafrán de Taliouine"]
+};
+const GREETS = {ar:"مرحباً، أريد طلب: ",fr:"Bonjour, je voudrais commander: ",en:"Hello, I'd like to order: ",es:"Hola, quisiera pedir: "};
+document.querySelectorAll(".product-cta").forEach((btn,i)=>{
+  btn.addEventListener("click",()=>{
+    const l=html.getAttribute("data-lang")||"ar";
+    const name=(PNAMES[l]||PNAMES.ar)[i];
+    const greet=GREETS[l]||GREETS.ar;
+    window.open("https://wa.me/212638733257?text="+encodeURIComponent(greet+name),"_blank");
+  });
+});
+
+// ══ INIT ══
+const saved = localStorage.getItem("kb-lang")||"ar";
+setLang(saved);
+</script>
+</body>
+</html>
