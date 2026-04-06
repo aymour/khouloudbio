@@ -520,6 +520,72 @@ footer{background:#040a04;border-top:4px solid var(--gold);}
   .footer-map-img{max-width:100%;}
   .map-container{gap:1.5rem;}
 }
+
+/* ═══════════════════════════════════════════════════
+   REVIEWS & COMMENTS SECTION
+═══════════════════════════════════════════════════ */
+.reviews-section{
+  padding:5.5rem 5%;
+  background:linear-gradient(160deg,#070f07,#0d200d,#0a180a);
+  position:relative;overflow:hidden;
+}
+.reviews-section::before{content:"";position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c4922a' fill-opacity='0.025'%3E%3Cpath d='M40 0L80 40L40 80L0 40Z'/%3E%3C/g%3E%3C/svg%3E");pointer-events:none;}
+.reviews-inner{position:relative;z-index:2;max-width:1100px;margin:0 auto;}
+.reviews-header{text-align:center;margin-bottom:2.5rem;}
+.reviews-sub{color:rgba(255,255,255,.5);font-size:.9rem;margin-top:.6rem;}
+
+/* Showcase cards */
+.reviews-showcase{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr));gap:1.2rem;margin-bottom:3rem;}
+.review-card{background:rgba(255,255,255,.04);border:1px solid rgba(196,146,42,.2);border-radius:16px;padding:1.5rem;position:relative;transition:transform .3s;}
+.review-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;border-radius:16px 16px 0 0;background:linear-gradient(to right,transparent,rgba(196,146,42,.5),transparent);}
+.review-card:hover{transform:translateY(-3px);background:rgba(255,255,255,.07);}
+.review-stars{color:#f0c84a;font-size:1.1rem;letter-spacing:.15em;margin-bottom:.7rem;}
+.review-text{font-size:.85rem;color:rgba(255,255,255,.75);line-height:1.7;font-style:italic;margin-bottom:.8rem;}
+.review-author{font-size:.72rem;color:var(--gold2);font-weight:700;}
+
+/* Comment form */
+.comment-box{
+  background:rgba(255,255,255,.03);border:1px solid rgba(196,146,42,.2);
+  border-radius:20px;padding:2rem 2.5rem;max-width:680px;margin:0 auto;
+}
+.comment-title{color:var(--gold3);font-size:1rem;font-weight:700;margin-bottom:1.2rem;text-align:center;}
+
+/* Star rating */
+.star-rating{display:flex;align-items:center;gap:.4rem;margin-bottom:1.2rem;justify-content:center;}
+.star-lbl{color:rgba(255,255,255,.5);font-size:.8rem;margin-inline-end:.3rem;}
+.star{font-size:1.8rem;cursor:pointer;color:rgba(255,255,255,.2);transition:color .15s,transform .15s;user-select:none;}
+.star:hover,.star.active{color:#f0c84a;transform:scale(1.2);}
+.star.filled{color:#f0c84a;}
+
+/* Inputs */
+.comment-fields{display:flex;flex-direction:column;gap:.8rem;margin-bottom:1.2rem;}
+.comment-input,.comment-textarea{
+  background:rgba(255,255,255,.06);border:1px solid rgba(196,146,42,.2);
+  border-radius:10px;padding:.75rem 1rem;font-family:"Cairo",sans-serif;
+  font-size:.85rem;color:white;outline:none;width:100%;
+  transition:border-color .2s,background .2s;
+}
+.comment-input:focus,.comment-textarea:focus{border-color:rgba(196,146,42,.5);background:rgba(255,255,255,.09);}
+.comment-textarea{resize:vertical;min-height:100px;}
+
+/* WhatsApp send button */
+.btn-wa-comment{
+  width:100%;background:linear-gradient(135deg,#25d366,#128c5c);
+  color:white;border:none;padding:.9rem 2rem;border-radius:30px;
+  font-family:"Cairo",sans-serif;font-size:.95rem;font-weight:800;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.65rem;
+  transition:all .25s;box-shadow:0 4px 20px rgba(37,211,102,.25);
+}
+.btn-wa-comment:hover{background:linear-gradient(135deg,#2de872,#19b46b);transform:translateY(-2px);box-shadow:0 8px 30px rgba(37,211,102,.35);}
+.comment-note{text-align:center;font-size:.68rem;color:rgba(255,255,255,.3);margin-top:.8rem;}
+
+@media(max-width:768px){
+  .reviews-section{padding:3.5rem 4%;}
+  .comment-box{padding:1.5rem 1.2rem;}
+  .reviews-showcase{grid-template-columns:1fr;}
+}
+
 </style>
 </head>
 <body>
@@ -553,6 +619,7 @@ footer{background:#040a04;border-top:4px solid var(--gold);}
   <ul>
     <li><a href="#products"><span class="ti-ar">منتجاتنا</span><span class="ti-fr">Produits</span><span class="ti-en">Products</span><span class="ti-es">Productos</span></a></li>
     <li><a href="#map-section"><span class="ti-ar">الخريطة</span><span class="ti-fr">Carte</span><span class="ti-en">Map</span><span class="ti-es">Mapa</span></a></li>
+    <li><a href="#reviews"><span class="ti-ar">تعليقات</span><span class="ti-fr">Avis</span><span class="ti-en">Reviews</span><span class="ti-es">Opiniones</span></a></li>
     <li><a href="#why"><span class="ti-ar">لماذا نحن</span><span class="ti-fr">Pourquoi nous</span><span class="ti-en">Why us</span><span class="ti-es">Por qué</span></a></li>
     <li><a href="https://wa.me/212638733257" target="_blank" class="nav-cta">
       <span class="ti-ar">اطلب الآن</span><span class="ti-fr">Commander</span><span class="ti-en">Order now</span><span class="ti-es">Pedir ahora</span>
@@ -589,7 +656,7 @@ footer{background:#040a04;border-top:4px solid var(--gold);}
   </div>
 
   <h1 class="land-h1">
-    <span class="t-ar"><span class="gold">كنوز</span> المغرب<br><span class="light">في يدَيك</span></span>
+    <span class="t-ar"><span class="gold">كنوز</span> المغرب<br><span class="light">بين يدَيك</span></span>
     <span class="t-fr">Les <span class="gold">Trésors</span><br>du Maroc <span class="light">chez vous</span></span>
     <span class="t-en">Morocco's <span class="gold">Treasures</span><br><span class="light">Delivered to You</span></span>
     <span class="t-es">Los <span class="gold">Tesoros</span><br>de Marruecos <span class="light">en Casa</span></span>
@@ -1067,6 +1134,83 @@ footer{background:#040a04;border-top:4px solid var(--gold);}
   </div>
 </section>
 
+<!-- ══════════════════════════════════════════════
+     REVIEWS & COMMENTS — Send to WhatsApp
+══════════════════════════════════════════════ -->
+<section class="reviews-section reveal" id="reviews">
+  <div class="reviews-inner">
+    <div class="reviews-header">
+      <span class="section-eyebrow">
+        <span class="ti-ar">آراء العملاء</span>
+        <span class="ti-fr">Avis clients</span>
+        <span class="ti-en">Customer reviews</span>
+        <span class="ti-es">Opiniones</span>
+      </span>
+      <h2 class="section-title" style="color:white;">
+        <span class="t-ar">شاركنا <span class="gold">تجربتك</span></span>
+        <span class="t-fr">Partagez votre <span class="gold">expérience</span></span>
+        <span class="t-en">Share your <span class="gold">experience</span></span>
+        <span class="t-es">Comparte tu <span class="gold">experiencia</span></span>
+      </h2>
+      <p class="reviews-sub">
+        <span class="t-ar">تعليقك يصلنا مباشرة عبر واتساب 💬</span>
+        <span class="t-fr">Votre avis nous parvient directement via WhatsApp 💬</span>
+        <span class="t-en">Your comment reaches us directly via WhatsApp 💬</span>
+        <span class="t-es">Tu comentario nos llega directamente por WhatsApp 💬</span>
+      </p>
+    </div>
+
+    <!-- Existing reviews display -->
+    
+
+    <!-- Comment form -->
+    <div class="comment-box">
+      <h3 class="comment-title">
+        <span class="ti-ar">✍️ اكتب تعليقك</span>
+        <span class="ti-fr">✍️ Écrire un avis</span>
+        <span class="ti-en">✍️ Write a review</span>
+        <span class="ti-es">✍️ Escribir opinión</span>
+      </h3>
+
+      <!-- Stars rating -->
+      <div class="star-rating" id="starRating">
+        <span class="star-lbl">
+          <span class="ti-ar">تقييمك:</span>
+          <span class="ti-fr">Note:</span>
+          <span class="ti-en">Rating:</span>
+          <span class="ti-es">Valoración:</span>
+        </span>
+        <span class="star" data-v="1">★</span>
+        <span class="star" data-v="2">★</span>
+        <span class="star" data-v="3">★</span>
+        <span class="star" data-v="4">★</span>
+        <span class="star" data-v="5">★</span>
+      </div>
+
+      <div class="comment-fields">
+        <input id="cName" type="text" class="comment-input" placeholder="" />
+        <input id="cCity" type="text" class="comment-input" placeholder="" />
+        <textarea id="cText" class="comment-textarea" rows="4" placeholder=""></textarea>
+      </div>
+
+      <button class="btn-wa-comment" onclick="sendComment()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <span class="ti-ar">إرسال عبر واتساب</span>
+        <span class="ti-fr">Envoyer via WhatsApp</span>
+        <span class="ti-en">Send via WhatsApp</span>
+        <span class="ti-es">Enviar por WhatsApp</span>
+      </button>
+
+      <p class="comment-note">
+        <span class="t-ar">سيتم فتح واتساب تلقائياً مع تعليقك ✓</span>
+        <span class="t-fr">WhatsApp s'ouvrira automatiquement avec votre avis ✓</span>
+        <span class="t-en">WhatsApp will open automatically with your review ✓</span>
+        <span class="t-es">WhatsApp se abrirá automáticamente con tu opinión ✓</span>
+      </p>
+    </div>
+  </div>
+</section>
+
 <!-- CTA -->
 <section class="cta-section">
   <h2>
@@ -1353,6 +1497,97 @@ document.querySelectorAll(".product-cta").forEach((btn,i)=>{
     window.open("https://wa.me/212638733257?text="+encodeURIComponent(greet+name),"_blank");
   });
 });
+
+
+// ══ REVIEWS FORM ══
+const PLACEHOLDERS = {
+  name: {ar:'اسمك (اختياري)', fr:'Votre nom (optionnel)', en:'Your name (optional)', es:'Tu nombre (opcional)'},
+  city: {ar:'مدينتك / بلدك', fr:'Votre ville / pays', en:'Your city / country', es:'Tu ciudad / país'},
+  text: {ar:'اكتب تجربتك مع منتجاتنا...', fr:'Partagez votre expérience avec nos produits...', en:'Share your experience with our products...', es:'Comparte tu experiencia con nuestros productos...'}
+};
+
+function updatePlaceholders(){
+  const l = document.documentElement.getAttribute('data-lang') || 'ar';
+  const ni = document.getElementById('cName');
+  const ci = document.getElementById('cCity');
+  const ti = document.getElementById('cText');
+  if(ni) ni.placeholder = PLACEHOLDERS.name[l] || PLACEHOLDERS.name.ar;
+  if(ci) ci.placeholder = PLACEHOLDERS.city[l] || PLACEHOLDERS.city.ar;
+  if(ti) ti.placeholder = PLACEHOLDERS.text[l] || PLACEHOLDERS.text.ar;
+}
+
+// Hook into setLang
+const _origSetLang = setLang;
+function setLang(l){
+  _origSetLang(l);
+  updatePlaceholders();
+}
+
+// Star rating
+let selectedStars = 5;
+document.querySelectorAll('.star').forEach(s => {
+  s.addEventListener('mouseenter', () => {
+    const v = +s.dataset.v;
+    document.querySelectorAll('.star').forEach(st => {
+      st.classList.toggle('filled', +st.dataset.v <= v);
+    });
+  });
+  s.addEventListener('mouseleave', () => {
+    document.querySelectorAll('.star').forEach(st => {
+      st.classList.toggle('filled', +st.dataset.v <= selectedStars);
+    });
+  });
+  s.addEventListener('click', () => {
+    selectedStars = +s.dataset.v;
+    document.querySelectorAll('.star').forEach(st => {
+      st.classList.toggle('active', +st.dataset.v <= selectedStars);
+      st.classList.toggle('filled', +st.dataset.v <= selectedStars);
+    });
+  });
+});
+// Init stars
+document.querySelectorAll('.star').forEach(s => s.classList.toggle('filled', +s.dataset.v <= 5));
+
+function sendComment(){
+  const l = document.documentElement.getAttribute('data-lang') || 'ar';
+  const name = document.getElementById('cName').value.trim();
+  const city = document.getElementById('cCity').value.trim();
+  const text = document.getElementById('cText').value.trim();
+  const stars = '★'.repeat(selectedStars) + '☆'.repeat(5-selectedStars);
+
+  if(!text){
+    const msgs = {ar:'الرجاء كتابة تعليق',fr:'Veuillez écrire un avis',en:'Please write a review',es:'Por favor escribe una opinión'};
+    alert(msgs[l]||msgs.ar);
+    return;
+  }
+
+  const labels = {
+    ar: {title:'⭐ تقييم جديد - خلود بيو', rating:'التقييم', from:'من', comment:'التعليق'},
+    fr: {title:'⭐ Nouvel avis - Khouloud Bio', rating:'Note', from:'De', comment:'Avis'},
+    en: {title:'⭐ New review - Khouloud Bio', rating:'Rating', from:'From', comment:'Review'},
+    es: {title:'⭐ Nueva opinión - Khouloud Bio', rating:'Nota', from:'De', comment:'Opinión'}
+  };
+  const lb = labels[l] || labels.ar;
+
+  let msg = lb.title + '\n';
+  msg += lb.rating + ': ' + stars + '\n';
+  if(name) msg += lb.from + ': ' + name;
+  if(city) msg += (name ? ' — ' : lb.from + ': ') + city;
+  if(name || city) msg += '\n';
+  msg += lb.comment + ': ' + text;
+
+  window.open('https://wa.me/212638733257?text=' + encodeURIComponent(msg), '_blank');
+
+  // Clear form
+  document.getElementById('cName').value = '';
+  document.getElementById('cCity').value = '';
+  document.getElementById('cText').value = '';
+  selectedStars = 5;
+  document.querySelectorAll('.star').forEach(s => s.classList.toggle('filled', +s.dataset.v <= 5));
+}
+
+// Init placeholders on load
+setTimeout(updatePlaceholders, 100);
 
 // ══ INIT ══
 const saved = localStorage.getItem("kb-lang")||"ar";
